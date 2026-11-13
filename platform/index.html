@@ -7,7 +7,7 @@
 <title>PAKIM · Платформа</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 :root{
   color-scheme:dark;
@@ -27,8 +27,8 @@
   --glass:linear-gradient(160deg,rgba(255,250,240,.075),rgba(255,250,240,.022) 60%);
   --glass2:linear-gradient(160deg,rgba(255,250,240,.11),rgba(255,250,240,.04));
   --r:22px;
-  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
-  --sans:Manrope,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --serif:'Inter Tight',Inter,system-ui,sans-serif;
+  --sans:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;
   --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -57,7 +57,7 @@ svg{display:block}
 .app{position:relative;z-index:2;display:grid;grid-template-columns:248px minmax(0,1fr);min-height:100vh}
 .side{position:sticky;top:0;height:100vh;padding:22px 16px;display:flex;flex-direction:column;gap:22px;border-right:1px solid var(--line);background:linear-gradient(180deg,rgba(10,9,8,.35),rgba(10,9,8,.6));backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px)}
 .brand{display:flex;align-items:center;gap:12px;padding:4px 8px}
-.mark{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--glass2);border:1px solid var(--line2);font:600 21px/1 var(--serif);color:var(--gold2)}
+.mark{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--glass2);border:1px solid var(--line2);font:700 18px/1 var(--serif);color:var(--gold2)}
 .brand b{display:block;font-weight:700;letter-spacing:.18em;font-size:13px}
 .brand small{display:block;color:var(--mute);font-size:11px;letter-spacing:.08em}
 .nav{display:flex;flex-direction:column;gap:3px}
@@ -78,8 +78,8 @@ svg{display:block}
 
 main{min-width:0;padding:26px 32px 60px}
 .top{display:flex;align-items:center;gap:16px;margin-bottom:26px}
-.top h1{font:500 42px/1 var(--serif);letter-spacing:-.01em}
-.top h1 em{font-style:italic;color:var(--gold)}
+.top h1{font:600 36px/1.05 var(--serif);letter-spacing:-.025em}
+.top h1 em{font-style:normal;color:var(--gold)}
 .top .sub{color:var(--mute);font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-top:8px}
 .top .sp{flex:1}
 .search{display:flex;align-items:center;gap:8px;height:44px;padding:0 14px;border-radius:14px;min-width:240px;color:var(--mute)}
@@ -110,7 +110,7 @@ main{min-width:0;padding:26px 32px 60px}
 .kpi{padding:18px 18px 16px;min-height:132px;display:flex;flex-direction:column}
 .kpi .l{color:var(--dim);font-size:12px;font-weight:500;position:relative;z-index:1}
 .kpi .v,.kpi .d{position:relative;z-index:1}
-.kpi .v{font:500 40px/1 var(--serif);margin-top:auto;letter-spacing:-.01em}
+.kpi .v{font:600 32px/1 var(--serif);margin-top:auto;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
 .kpi .v small{font:500 15px var(--sans);color:var(--dim);margin-left:4px}
 .kpi .d{display:flex;align-items:center;gap:6px;font-size:12px;margin-top:8px;color:var(--mute)}
 .up{color:var(--ok)}.dn{color:var(--bad)}
@@ -182,7 +182,7 @@ main{min-width:0;padding:26px 32px 60px}
 .lead .t b{font-weight:600;font-size:13.5px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .lead .t .src{margin-left:auto;width:24px;height:24px;border-radius:8px;display:grid;place-items:center;background:rgba(255,246,232,.06);flex:none}
 .lead .t .src svg{width:13px;height:13px;color:var(--gold2)}
-.lead .car{font:500 19px/1.1 var(--serif)}
+.lead .car{font:600 16px/1.2 var(--serif);letter-spacing:-.01em}
 .lead .m{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .lead .f{display:flex;align-items:center;gap:8px;color:var(--mute);font-size:11.5px}
 .lead .f .ava{width:22px;height:22px;font-size:9px}
@@ -205,15 +205,15 @@ main{min-width:0;padding:26px 32px 60px}
 .stl{display:flex;justify-content:space-between;font-size:10.5px;color:var(--mute);margin-top:7px;min-width:280px}
 .vehicle{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,2fr) 120px;gap:20px;align-items:center;padding:16px 0;border-top:1px solid var(--line)}
 .vehicle:first-child{border-top:0}
-.vehicle .vn b{font:500 22px/1.1 var(--serif);display:block}
+.vehicle .vn b{font:600 17px/1.2 var(--serif);display:block;letter-spacing:-.01em}
 .vehicle .vn small{color:var(--mute);font-size:12px}
 .vehicle .eta{text-align:right}
-.vehicle .eta b{display:block;font:500 20px var(--serif)}
+.vehicle .eta b{display:block;font:600 17px var(--serif)}
 .vehicle .eta small{color:var(--mute);font-size:11.5px}
 
 /* курсы */
 .fx{display:flex;flex-direction:column;gap:6px}
-.fx .v{font:500 34px/1 var(--serif)}
+.fx .v{font:600 28px/1 var(--serif);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
 .fx small{color:var(--mute)}
 
 /* бары */
@@ -229,17 +229,17 @@ main{min-width:0;padding:26px 32px 60px}
 .mgr .h{display:flex;align-items:center;gap:12px}
 .mgr .h .ava{width:44px;height:44px;font-size:13px}
 .mgr .h b{display:block;font-weight:600}.mgr .h small{color:var(--mute);font-size:12px}
-.mgr .h .rk{margin-left:auto;font:500 30px var(--serif);color:var(--gold)}
+.mgr .h .rk{margin-left:auto;font:600 22px var(--serif);color:var(--gold)}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .stats div{padding:10px 12px;border-radius:14px;background:rgba(255,246,232,.035);border:1px solid var(--line)}
 .stats small{display:block;color:var(--mute);font-size:11px}
-.stats b{font:500 21px var(--serif)}
+.stats b{font:600 18px var(--serif);letter-spacing:-.02em}
 
 /* контент */
 .week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
 .day{padding:12px;border-radius:16px;min-height:170px;display:flex;flex-direction:column;gap:8px}
 .day h4{font-size:11.5px;color:var(--mute);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
-.day h4 b{display:block;font:500 24px var(--serif);color:var(--ink);letter-spacing:0;text-transform:none}
+.day h4 b{display:block;font:600 20px var(--serif);color:var(--ink);letter-spacing:0;text-transform:none}
 .post{padding:8px 9px;border-radius:11px;background:rgba(255,246,232,.05);border:1px solid var(--line);font-size:12px;display:flex;flex-direction:column;gap:3px}
 .post small{color:var(--mute);font-size:10.5px;display:flex;align-items:center;gap:5px}
 .post small svg{width:11px;height:11px;color:var(--gold)}
@@ -256,7 +256,7 @@ main{min-width:0;padding:26px 32px 60px}
 .agent .h .ic{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:var(--glass2);border:1px solid var(--line2)}
 .agent .h .ic svg{width:20px;height:20px;color:var(--gold)}
 .agent .h b{font-weight:600;display:block}.agent .h small{color:var(--mute);font-size:12px}
-.agent .big{font:500 38px/1 var(--serif)}
+.agent .big{font:600 32px/1 var(--serif);letter-spacing:-.03em}
 .agent p{color:var(--dim);font-size:13px}
 
 /* карточка заявки */
@@ -267,7 +267,7 @@ main{min-width:0;padding:26px 32px 60px}
 .drawer .x{position:absolute;top:18px;right:18px;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,246,232,.05);border:1px solid var(--line)}
 .drawer .x svg{width:18px;height:18px}
 .dh small{color:var(--mute);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
-.dh h2{font:500 34px/1.05 var(--serif);margin:8px 50px 10px 0}
+.dh h2{font:600 28px/1.1 var(--serif);letter-spacing:-.02em;margin:8px 50px 10px 0}
 .sec{margin-top:22px}
 .sec>h4{font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
 .facts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -283,7 +283,7 @@ main{min-width:0;padding:26px 32px 60px}
 .calc div:first-child{border-top:0}
 .calc div span{color:var(--dim)}
 .calc div.tot{border-top:1px solid var(--line2);padding-top:12px}
-.calc div.tot b{font:500 26px var(--serif);color:var(--gold2)}
+.calc div.tot b{font:600 22px var(--serif);color:var(--gold2);letter-spacing:-.02em}
 .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
 .stagepick{display:flex;flex-wrap:wrap;gap:6px}
 .stagepick button{height:32px;padding:0 11px;border-radius:10px;font-size:12px;color:var(--dim);background:rgba(255,246,232,.04);border:1px solid var(--line)}
@@ -488,7 +488,7 @@ function area(vals, labels) {
   const line = vals.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(' ');
   const fill = line + ` L${x(vals.length - 1)} ${H - 30} L${x(0)} ${H - 30} Z`;
   const grid = [0, .25, .5, .75, 1].map(f => `<line x1="${P}" x2="${W - P}" y1="${y(mx * f)}" y2="${y(mx * f)}" stroke="rgba(255,246,232,.06)"/>`).join('');
-  const lb = labels.map((l, i) => `<text x="${x(i)}" y="${H - 8}" fill="rgba(244,238,228,.38)" font-size="11" text-anchor="middle" font-family="Manrope">${l}</text>`).join('');
+  const lb = labels.map((l, i) => `<text x="${x(i)}" y="${H - 8}" fill="rgba(244,238,228,.38)" font-size="11" text-anchor="middle" font-family="Inter">${l}</text>`).join('');
   const last = vals.length - 1;
   return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto"><defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D9B98F" stop-opacity=".38"/><stop offset="1" stop-color="#D9B98F" stop-opacity="0"/></linearGradient></defs>${grid}<path d="${fill}" fill="url(#ga)"/><path d="${line}" fill="none" stroke="#E9CFA5" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:dash 1.6s cubic-bezier(.2,.8,.2,1) forwards"/><circle cx="${x(last)}" cy="${y(vals[last])}" r="5" fill="#0A0908" stroke="#F2DFBF" stroke-width="2"/>${lb}</svg><style>@keyframes dash{to{stroke-dashoffset:0}}</style>`;
 }
@@ -496,7 +496,7 @@ function donut(parts) {
   const tot = parts.reduce((a, p) => a + p[1], 0), R = 58, C = 2 * Math.PI * R;
   let off = 0;
   const segs = parts.map(p => { const l = p[1] / tot * C; const s = `<circle cx="75" cy="75" r="${R}" fill="none" stroke="${p[2]}" stroke-width="15" stroke-dasharray="${l - 3} ${C - l + 3}" stroke-dashoffset="${-off}" transform="rotate(-90 75 75)"/>`; off += l; return s; }).join('');
-  return `<svg viewBox="0 0 150 150"><circle cx="75" cy="75" r="${R}" fill="none" stroke="rgba(255,246,232,.05)" stroke-width="15"/>${segs}<text x="75" y="74" text-anchor="middle" fill="#F4EEE4" font-family="Cormorant Garamond" font-size="32">${fmt(tot)}</text><text x="75" y="93" text-anchor="middle" fill="rgba(244,238,228,.45)" font-family="Manrope" font-size="10.5">заявок за месяц</text></svg>`;
+  return `<svg viewBox="0 0 150 150"><circle cx="75" cy="75" r="${R}" fill="none" stroke="rgba(255,246,232,.05)" stroke-width="15"/>${segs}<text x="75" y="74" text-anchor="middle" fill="#F4EEE4" font-family="Inter Tight" font-weight="600" font-size="26">${fmt(tot)}</text><text x="75" y="93" text-anchor="middle" fill="rgba(244,238,228,.45)" font-family="Inter" font-size="10.5">заявок за месяц</text></svg>`;
 }
 function routeMap() {
   const P = {kr:[16,62], cn:[10,30], vl:[34,46], nsk:[58,40], ekb:[74,30], msk:[92,22], ala:[66,74], bsk:[76,82], bak:[90,68]};
@@ -593,7 +593,7 @@ function leadCard(l) {
   const s = SRC[l.src];
   return `<div class="lead ${l.fresh ? 'fresh' : ''}" draggable="true" data-id="${l.id}">
     <div class="t"><b>${esc(l.name)}</b><span class="src" title="${s[0]}">${I(s[1])}</span></div>
-    <div class="car">${esc(l.car)}${l.qty > 1 ? ` <span style="color:var(--gold);font-size:15px">×${l.qty}</span>` : ''}</div>
+    <div class="car">${esc(l.car)}${l.qty > 1 ? ` <span style="color:var(--gold);font-size:14px">×${l.qty}</span>` : ''}</div>
     <div class="m"><span class="tag ${l.dealer ? 'gold' : ''}">${l.type}</span><span class="tag">${esc(l.city)}</span><span class="tag">${mln(l.price * l.qty)} млн ₽</span></div>
     <div class="f"><span class="ava">${l.mgr}</span>${ago(l.ago)}<span class="sla ${l.resp < 30 ? 'up' : ''}">· ответ ${l.resp} с</span><span class="score">${l.score}</span></div>
   </div>`;
