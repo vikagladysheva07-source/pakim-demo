@@ -48,6 +48,7 @@ button{cursor:pointer;background:none;border:0}
 /* grain + progress + loader + cursor */
 .grain{position:fixed;inset:-50%;z-index:150;pointer-events:none;opacity:.08;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
 #prog{position:fixed;left:0;top:0;height:2px;width:100%;background:var(--bronze);transform-origin:left;transform:scaleX(0);z-index:120}
+@media (hover:none),(max-width:860px){.grain{display:none}}
 #loader{position:fixed;inset:0;z-index:500;background:var(--bg);display:grid;place-items:center}
 #loader .lg{font-family:var(--disp);font-weight:600;font-size:clamp(34px,6vw,64px);letter-spacing:.42em;padding-left:.42em}
 #loader .ln2{width:min(260px,60vw);height:1px;background:var(--ld2);margin:26px auto 14px;position:relative;overflow:hidden}
@@ -530,7 +531,6 @@ body:not(.demo) .chat-fab,body:not(.demo) .demo-fab,body:not(.demo) .chat{displa
       <div class="co" id="co"><svg id="cosvg"></svg></div>
     </div>
     <div class="hero-credit">Демо-модель автомобиля</div>
-    <div class="hero-hint"><i></i>Листайте, машина повернётся</div>
   </div>
   <div class="hero-copy" id="heroCopy">
     <span class="cap">Оптовый экспорт из Кореи и Китая</span>
@@ -795,7 +795,8 @@ $('#burger').onclick=()=>{const on=menu.classList.toggle('on');$('#burger').inne
 /* ---------- loader ---------- */
 (function(){
   const L=$('#loader');
-  if(reduce||!window.gsap){L.remove();return}
+  let seen=false;try{seen=!!sessionStorage.getItem('pk_ld');sessionStorage.setItem('pk_ld','1')}catch(e){}
+  if(seen||reduce||!window.gsap){L.remove();return}
   const o={v:0};
   gsap.to(o,{v:100,duration:1.2,ease:'power2.inOut',onUpdate:()=>{$('#ldct').textContent=Math.round(o.v);$('#ldbar').style.transform='scaleX('+o.v/100+')'},
     onComplete:()=>gsap.to(L,{yPercent:-100,duration:.9,ease:'power4.inOut',onComplete:()=>L.remove()})});
@@ -835,7 +836,7 @@ function initMotion(){
   const T=1.5; // задержка на экран загрузки
   gsap.from('#heroCopy > *',{opacity:0,y:26,stagger:.12,duration:1,delay:T+.5,ease:'power3.out'});
   gsap.from('#bigTxt',{yPercent:40,opacity:0,duration:1.5,delay:T+.2,ease:'power4.out'});
-  gsap.from('.hero-hint,.hero-credit',{opacity:0,duration:1,delay:T+1.6});
+  gsap.from('.hero-credit',{opacity:0,duration:1,delay:T+1.6});
 
   $$('.ed').forEach(h=>{if(h.closest('.cview'))return;splitWords(h);
     gsap.from(h.querySelectorAll('.wi'),{yPercent:118,duration:1.15,ease:'power4.out',stagger:.07,scrollTrigger:{trigger:h,start:'top 85%'}})});
@@ -1107,17 +1108,19 @@ function startFrames(first){
   const delay=Math.max(0,1.5-performance.now()/1000);
   gsap.to(iv,{v:0,duration:2.8,delay,ease:'power3.out'});
   const overflow=()=>Math.max(0,bigTxt.scrollWidth-innerWidth*.9);
-  ScrollTrigger.create({trigger:hero,start:'top top',end:'+=2400',pin:true,scrub:true,refreshPriority:2,invalidateOnRefresh:true,
-    onUpdate:s=>{prog=s.progress;target=s.progress*N;gsap.set(bigTxt,{x:-s.progress*overflow()});}});
+  ScrollTrigger.create({trigger:hero,start:'top top',end:'bottom top',scrub:true,invalidateOnRefresh:true,
+    onUpdate:s=>{gsap.set(bigTxt,{x:-s.progress*overflow()});}});
   let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting,{rootMargin:'200px'}).observe(hero);
-  gsap.ticker.add(()=>{if(!vis)return;cur+=((target+iv.v)-cur)*.12;draw()});
+  const FSPEED=N/(18*60);
+  gsap.ticker.add(()=>{if(!vis||document.hidden)return;target+=FSPEED*gsap.ticker.deltaRatio();prog=(((target/N)%1)+1)%1;cur+=((target+iv.v)-cur)*.12;draw()});
   ScrollTrigger.refresh();
 }
 const fail=why=>{console.warn('3D off:',why);hero.classList.add('nogl');window.ScrollTrigger&&ScrollTrigger.refresh()};
 let renderer;
-try{renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true,powerPreference:'high-performance'})}catch(e){fail(e)}
+const lite=matchMedia('(max-width:860px),(hover:none)').matches;
+try{renderer=new THREE.WebGLRenderer({canvas:cv,antialias:!lite,alpha:true,powerPreference:lite?'default':'high-performance'})}catch(e){fail(e)}
 if(renderer){
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setPixelRatio(Math.min(devicePixelRatio,lite?1.5:2));
 renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;
 const scene=new THREE.Scene();
 scene.environment=new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(),0.04).texture;
@@ -1226,9 +1229,10 @@ function start(){
   if(window.gsap&&window.ScrollTrigger){
     gsap.to(intro,{a:0,duration:2.8,delay,ease:'power3.out'});
     const overflow=()=>Math.max(0,bigTxt.scrollWidth-innerWidth*.9);
-    ScrollTrigger.create({trigger:hero,start:'top top',end:'+=2400',pin:true,scrub:true,refreshPriority:2,invalidateOnRefresh:true,
-      onUpdate:s=>{target=s.progress*Math.PI*2;gsap.set(bigTxt,{x:-s.progress*overflow()});}});
-    gsap.ticker.add(render);ScrollTrigger.refresh();
+    ScrollTrigger.create({trigger:hero,start:'top top',end:'bottom top',scrub:true,invalidateOnRefresh:true,
+      onUpdate:s=>{gsap.set(bigTxt,{x:-s.progress*overflow()});}});
+    const SPEED=Math.PI*2/(18*60); /* полный оборот за 18 секунд */
+    gsap.ticker.add(()=>{if(visible&&ready&&!document.hidden)target+=SPEED*gsap.ticker.deltaRatio();render()});ScrollTrigger.refresh();
   }else{const loop=()=>{target=(scrollY/innerHeight)*Math.PI;render();requestAnimationFrame(loop)};loop()}
 }
 }
