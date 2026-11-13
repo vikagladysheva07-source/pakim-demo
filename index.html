@@ -68,6 +68,7 @@ button{cursor:pointer;background:none;border:0}
 /* header */
 .hd{position:fixed;inset:0 0 auto;z-index:90;height:76px;display:flex;align-items:center;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
 .hd.s{background:rgba(10,9,8,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--ld)}
+body.lock .hd{background:rgba(10,9,8,.98);border-color:var(--ld)}
 .hd .wrap{width:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
 .logo{font-family:var(--disp);font-weight:600;letter-spacing:.34em;font-size:20px;color:var(--text)}
 .nav{display:flex;gap:38px}
@@ -403,10 +404,13 @@ body:not(.demo) .chat-fab,body:not(.demo) .demo-fab,body:not(.demo) .chat{displa
   .dcar{grid-template-columns:72px 1fr}.dcar .pr{grid-column:1/-1;text-align:left}
   .seg{grid-template-columns:1fr}.seg button{border-left:0;border-top:1px solid var(--ld2)}.seg button:first-child{border-top:0}
   .cgrid{grid-template-columns:1fr}
-  .lines{height:360px}.ln .c{font-size:9.5px}.ln{padding-right:4px}.ln .n{font-size:26px}
+  .lines{height:360px}.ln .c{font-size:9.5px;letter-spacing:.02em;line-height:1.35}.ln{padding-right:8px}.ln .n{font-size:26px}
   .route-info{grid-template-columns:1fr;gap:4px}.route-info .big{grid-row:auto;font-size:56px}
+  .route-map{width:calc(100% - 44px);margin:auto}
   .node span{font-size:9.5px}
-  .node:nth-child(odd) span{max-width:84px;white-space:normal;text-align:center}
+  .node:nth-child(3) span{top:24px;bottom:auto}
+  .node:nth-child(2) span{left:-2px;transform:none}
+  .node:nth-child(6) span{right:-2px;left:auto;transform:none}
   .priv{flex-direction:column;align-items:flex-start}
   .co-lab{width:118px}.co-lab b{font-size:9.5px}.co-lab span{font-size:12px}
   /* плавающие кнопки: демо-панель скрыта, чат появляется после первого экрана и компактный */
