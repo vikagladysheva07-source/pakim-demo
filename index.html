@@ -53,11 +53,6 @@ button{cursor:pointer;background:none;border:0}
 #loader .ln2{width:min(260px,60vw);height:1px;background:var(--ld2);margin:26px auto 14px;position:relative;overflow:hidden}
 #loader .ln2 i{position:absolute;inset:0;background:var(--bronze);transform:scaleX(0);transform-origin:left}
 #loader .ct{text-align:center;font-size:12px;letter-spacing:.2em;color:var(--muted);font-variant-numeric:tabular-nums}
-#cur{position:fixed;left:0;top:0;z-index:300;pointer-events:none;width:36px;height:36px;margin:-18px 0 0 -18px;border:1px solid rgba(243,237,228,.55);border-radius:50%;display:grid;place-items:center;mix-blend-mode:difference;transition:width .3s,height .3s,margin .3s,background .3s,border-color .3s;opacity:0}
-#cur span{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:0;transition:opacity .2s;color:var(--bg)}
-#cur.hov{width:64px;height:64px;margin:-32px 0 0 -32px}
-#cur.view{width:96px;height:96px;margin:-48px 0 0 -48px;background:var(--bronze);border-color:var(--bronze);mix-blend-mode:normal}
-#cur.view span{opacity:1}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 28px;background:var(--text);color:var(--bg);font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;transition:background .3s,color .3s}
@@ -422,7 +417,6 @@ body:not(.demo) .chat-fab,body:not(.demo) .demo-fab,body:not(.demo) .chat{displa
 <body>
 <div class="grain"></div>
 <div id="prog"></div>
-<div id="cur"><span>Смотреть</span></div>
 <div id="loader"><div><div class="lg">PAKIM</div><div class="ln2"><i id="ldbar"></i></div><div class="ct" id="ldct">0</div></div></div>
 
 <header class="hd" id="hd"><div class="wrap">
@@ -725,12 +719,6 @@ $('#burger').onclick=()=>{const on=menu.classList.toggle('on');$('#burger').inne
 
 /* ---------- cursor + magnetic ---------- */
 if(fine&&window.gsap){
-  const cur=$('#cur'),qx=gsap.quickTo(cur,'x',{duration:.35,ease:'power3'}),qy=gsap.quickTo(cur,'y',{duration:.35,ease:'power3'});
-  addEventListener('mousemove',e=>{cur.style.opacity=1;qx(e.clientX);qy(e.clientY)});
-  document.addEventListener('mouseover',e=>{
-    const v=e.target.closest('.car-it .ph'),h=e.target.closest('a,button,summary,.opt,.ft');
-    cur.classList.toggle('view',!!v);cur.classList.toggle('hov',!!h&&!v);
-  });
   $$('.btn:not(.ghost),.alink').forEach(b=>{
     const mx=gsap.quickTo(b,'x',{duration:.4,ease:'power3'}),my=gsap.quickTo(b,'y',{duration:.4,ease:'power3'});
     b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();mx((e.clientX-r.left-r.width/2)*.22);my((e.clientY-r.top-r.height/2)*.3)});
