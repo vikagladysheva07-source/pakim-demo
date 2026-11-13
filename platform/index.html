@@ -341,13 +341,49 @@ main{min-width:0;padding:26px 32px 60px}
   .toast{width:auto}
   .demo{top:10px}
 }
+
+/* пояснение раздела */
+.hint{display:flex;gap:12px;align-items:flex-start;padding:14px 18px;margin:-8px 0 22px;border-radius:16px;font-size:13.5px;line-height:1.5;color:var(--dim);max-width:860px}
+.hint svg{width:18px;height:18px;flex:none;color:var(--gold);margin-top:1px}
+.hint b{color:var(--ink);font-weight:600}
+.demo{cursor:pointer;border:1px solid var(--line);font:inherit;font-size:11.5px}
+.demo u{text-decoration:none;color:var(--gold2)}
+/* приветствие */
+.intro{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:24px max(16px,env(safe-area-inset-right)) 24px max(16px,env(safe-area-inset-left));background:rgba(8,7,6,.62);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .35s}
+.intro.on{opacity:1;pointer-events:auto}
+.intro .box{width:min(760px,100%);max-height:calc(100vh - 48px);overflow:auto;padding:34px 34px 28px;border-radius:28px;transform:translateY(14px);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.intro.on .box{transform:none}
+.intro .kick{font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.intro h2{font-size:clamp(26px,3.4vw,36px);line-height:1.12;letter-spacing:-.02em;margin:14px 0 12px;text-wrap:balance}
+.intro h2 em{font-style:normal;color:var(--gold)}
+.intro .ilead{color:var(--dim);font-size:15px;line-height:1.6;margin:0 0 24px;max-width:620px}
+.intro .isteps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:22px}
+.intro .st{padding:18px;border-radius:18px}
+.intro .st .n{font:500 11px/1 var(--mono);color:var(--gold);letter-spacing:.1em}
+.intro .st b{display:block;font-size:15px;margin:12px 0 6px}
+.intro .st p{margin:0;color:var(--dim);font-size:13px;line-height:1.5}
+.intro .go{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.intro .go small{width:100%;color:var(--mute);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.intro .go button{height:38px;padding:0 14px;border-radius:12px;display:inline-flex;align-items:center;gap:8px;background:rgba(255,246,232,.04);border:1px solid var(--line2);color:var(--ink);font:inherit;font-size:13px;cursor:pointer}
+.intro .go button svg{width:16px;height:16px;color:var(--gold)}
+.intro .ft{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.intro .ft p{margin:0;color:var(--mute);font-size:12.5px;max-width:380px;line-height:1.5}
+@media (max-width:860px){
+  .intro{place-items:end center;padding-bottom:16px}
+  .intro .box{padding:24px 20px 20px;border-radius:24px;max-height:calc(100vh - 32px)}
+  .intro .isteps{grid-template-columns:minmax(0,1fr)}
+  .intro .st{padding:14px 16px}
+  .intro .st b{margin:8px 0 4px}
+  .intro .ft .btn{width:100%;justify-content:center}
+  .hint{margin:-10px 0 18px;font-size:13px;padding:12px 14px}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <div class="bg"><i></i><i></i><i></i><i></i><b></b></div>
 <div class="grain"></div>
-<div class="demo g"><i></i>Демо-версия · данные условные</div>
+<button type="button" class="demo g" id="demoBtn"><i></i>Демо-версия · <u>как устроена платформа</u></button>
 
 <div class="app">
   <aside class="side">
@@ -364,6 +400,7 @@ main{min-width:0;padding:26px 32px 60px}
       <button class="ib g" id="bell" aria-label="Уведомления"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg><span class="dot"></span></button>
       <button class="btn" id="newLead"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 5v14M5 12h14"/></svg>Заявка</button>
     </header>
+    <div class="hint g" id="hint"></div>
     <section id="view"></section>
   </main>
 </div>
@@ -371,6 +408,23 @@ main{min-width:0;padding:26px 32px 60px}
 <div class="scrim" id="scrim"></div>
 <aside class="drawer g" id="drawer" aria-hidden="true"></aside>
 <div class="toasts" id="toasts"></div>
+<div class="intro" id="intro" aria-hidden="true"><div class="box g" role="dialog" aria-modal="true" aria-labelledby="introT">
+  <span class="kick">Демо · платформа управления PAKIM</span>
+  <h2 id="introT">Вся компания <em>в одном окне</em></h2>
+  <p class="ilead">Сюда сами попадают заявки из соцсетей, с сайта и со звонков. ИИ-агент отвечает клиенту за 10 секунд, менеджер получает готовую карточку, а руководитель видит деньги, автомобили и команду без отчётов и звонков.</p>
+  <div class="isteps">
+    <div class="st g"><span class="n">01</span><b>Заявка приходит сама</b><p>Instagram, Telegram, WhatsApp, сайт, Авито и звонки попадают в CRM без ручного ввода.</p></div>
+    <div class="st g"><span class="n">02</span><b>ИИ отвечает и дожимает</b><p>Называет цену под ключ, узнаёт бюджет и сроки, сам пишет тем, кто замолчал.</p></div>
+    <div class="st g"><span class="n">03</span><b>Руководитель видит всё</b><p>Выручка и маржа, авто в пути, должники, скорость ответа каждого менеджера.</p></div>
+  </div>
+  <div class="go"><small>С чего начать</small>
+    <button type="button" data-go="crm">ICON_CRM Заявки и переписка</button>
+    <button type="button" data-go="fleet">ICON_SHIP Авто в пути</button>
+    <button type="button" data-go="finance">ICON_FIN Финансы</button>
+    <button type="button" data-go="agents">ICON_AI Что делают ИИ-агенты</button>
+  </div>
+  <div class="ft"><p>Данные условные. Каждые 20 секунд приходит новая заявка, так выглядит обычный рабочий день.</p><button type="button" class="btn" id="introGo">Смотреть платформу</button></div>
+</div></div>
 
 <script>
 (() => {
@@ -415,6 +469,8 @@ const MGR = {
 };
 const fmt = n => n.toLocaleString('ru-RU');
 const mln = n => (n).toLocaleString('ru-RU',{minimumFractionDigits:1,maximumFractionDigits:1});
+const RATE = 81.3;
+const usd = m => { const d = m * 1e6 / RATE; return d >= 1e6 ? '$' + (d / 1e6).toLocaleString('ru-RU',{minimumFractionDigits:1,maximumFractionDigits:2}) + ' млн' : '$' + fmt(Math.round(d / 100) * 100); };
 
 /* ---------- данные ---------- */
 const names = ['Тимур А.','Ольга С.','Руслан К.','Айдар Б.','Екатерина Н.','Бахтиёр Р.','Виктор Л.','Анна П.','Эльдар М.','Ирина В.','Нурлан Т.','Павел Д.','Самир Г.','Наталья Ф.','Азамат Ж.','Константин Е.','Дина О.','Алишер Х.','Глеб Р.','Фарид И.','Юлия К.','Марат С.','Олег Т.','Сабина А.'];
@@ -469,7 +525,7 @@ const FEED0 = [
   ['deal','KZ Auto Import подтвердил заказ на 4 авто','Предоплата 30% ожидается сегодня','14 мин'],
   ['ship','Zeekr 001 прибыл во Владивосток','Клиенту отправлен статус автоматически','38 мин'],
   ['doc','Сформировано коммерческое предложение для Урал Импорт','6 позиций, Корея и Китай','1 ч'],
-  ['tg','Новая заявка из Telegram: Li Auto L7','ИИ квалифицировал: розница, бюджет 5,5 млн','1 ч'],
+  ['tg','Новая заявка из Telegram: Li Auto L7','ИИ квалифицировал: розница, бюджет $68 000','1 ч'],
   ['spark','Агент вернул 3 клиентов, пропавших после расчёта','Двое попросили подборку','2 ч']
 ];
 let FEED = FEED0.map(f => ({ic: f[0], t: f[1], s: f[2], at: f[3]}));
@@ -521,6 +577,16 @@ const ROUTES = {
   media:{t:'Контент', i:IC.content},
   agents:{t:'ИИ-агенты', i:IC.ai}
 };
+const HINT = {
+  overview:'<b>Главный экран руководителя.</b> Заявки, сделки и выручка за сегодня и за месяц. Ниже воронка продаж и лента событий: что сделали агенты и менеджеры.',
+  crm:'<b>Все заявки из всех каналов.</b> Нажмите на карточку, чтобы увидеть переписку, сводку ИИ и расчёт под ключ. Карточки можно перетаскивать между этапами.',
+  fleet:'<b>Каждый автомобиль от выкупа до выдачи.</b> Лот, VIN, этап доставки и дата. Клиент получает статусы автоматически, менеджеру не нужно звонить.',
+  dealers:'<b>Оптовые клиенты.</b> Сколько авто взял каждый салон, кто должен по предоплате и кто давно не заказывал.',
+  finance:'<b>Деньги компании.</b> Выручка, маржа, дебиторка и курсы валют, по которым считается цена под ключ.',
+  team:'<b>Работа менеджеров.</b> Скорость ответа, конверсия и сделки каждого, плюс сколько часов забрали на себя ИИ-агенты.',
+  media:'<b>Контент, который приводит клиентов.</b> План публикаций и какие ролики принесли больше всего заявок.',
+  agents:'<b>ИИ-агенты в работе.</b> Отвечают в директе и комментариях, узнают бюджет, присылают подборки, дожимают и отправляют статусы доставки.'
+};
 function nav(cur) {
   const newCnt = LEADS.filter(l => l.stage === 0).length;
   $('#nav').innerHTML = Object.entries(ROUTES).map(([k, r]) => `<a href="#${k}" class="${k === cur ? 'on' : ''}">${I(r.i)}<span>${r.t}</span>${k === 'crm' ? `<span class="cnt">${newCnt}</span>` : ''}</a>`).join('');
@@ -545,7 +611,7 @@ V.overview = () => {
     ${kpi('Новые заявки сегодня', 38 + n0, '', '+24% к среднему', 1, spark([12,18,15,22,19,28,31,38 + n0]))}
     ${kpi('В работе', work + 136, '', 'по всем этапам', 1, spark([120,126,124,130,129,133,138,work + 136]))}
     ${kpi('Сделки за ноябрь', 94, '', '+12 к октябрю', 1, spark([61,70,66,74,82,80,88,94]))}
-    ${kpi('Выручка за ноябрь', '412,6', 'млн ₽', '+18% к октябрю', 1, spark([280,300,310,332,350,366,390,412]))}
+    ${kpi('Выручка за ноябрь', '$5,07', 'млн', '+18% к октябрю', 1, spark([280,300,310,332,350,366,390,412]))}
     ${kpi('Авто в пути', 87, '', '7 прибудут на этой неделе', 1, spark([60,64,70,72,78,80,85,87]))}
     ${kpi('Первый ответ', '11', 'сек', 'было 3 ч 40 мин', 1, spark([220,180,90,40,25,16,12,11], '#A9CFA8'))}
   </div>
@@ -566,7 +632,7 @@ V.overview = () => {
     <div class="g card"><div class="ch"><h3>Требует внимания</h3></div>
       <div class="feed">
         <div class="fi"><div class="ic">${I(IC.clock)}</div><p>4 заявки дилеров без ответа менеджера дольше часа<small>ИИ ответил, ждут условий опта</small></p><span class="tag warn">SLA</span></div>
-        <div class="fi"><div class="ic">${I(IC.doc)}</div><p>Предоплата от Kaspian Cars просрочена на 2 дня<small>1,9 млн ₽ · 2 авто</small></p><span class="tag bad">долг</span></div>
+        <div class="fi"><div class="ic">${I(IC.doc)}</div><p>Предоплата от Kaspian Cars просрочена на 2 дня<small>$23 400 · 2 авто</small></p><span class="tag bad">долг</span></div>
         <div class="fi"><div class="ic">${I(IC.ship)}</div><p>Hyundai Palisade задерживается на автовозе<small>Новая дата 17 ноября, клиент уведомлён</small></p><span class="tag gold">+2 дня</span></div>
         <div class="fi"><div class="ic">${I(IC.car)}</div><p>Курс KRW вырос на 1,8% за неделю<small>Пересчитать 23 открытых расчёта</small></p><span class="tag gold">курс</span></div>
       </div>
@@ -580,7 +646,7 @@ V.crm = () => {
   const cols = STAGES.map((s, i) => {
     const ls = list.filter(l => l.stage === i).sort((a, b) => a.ago - b.ago);
     const sum = ls.reduce((a, l) => a + l.price * l.qty, 0);
-    return `<div class="col g" data-stage="${i}"><div class="colh"><b>${s}</b><span>${ls.length}</span><em>${mln(sum)} млн</em></div>${ls.map(leadCard).join('')}</div>`;
+    return `<div class="col g" data-stage="${i}"><div class="colh"><b>${s}</b><span>${ls.length}</span><em>${usd(sum)}</em></div>${ls.map(leadCard).join('')}</div>`;
   }).join('');
   return `<div class="tools">
     <div class="seg g">${[['all','Все'],['d','Дилеры'],['r','Розница']].map(([k, t]) => `<button data-f="${k}" class="${filt === k ? 'on' : ''}">${t}</button>`).join('')}</div>
@@ -594,7 +660,7 @@ function leadCard(l) {
   return `<div class="lead ${l.fresh ? 'fresh' : ''}" draggable="true" data-id="${l.id}">
     <div class="t"><b>${esc(l.name)}</b><span class="src" title="${s[0]}">${I(s[1])}</span></div>
     <div class="car">${esc(l.car)}${l.qty > 1 ? ` <span style="color:var(--gold);font-size:14px">×${l.qty}</span>` : ''}</div>
-    <div class="m"><span class="tag ${l.dealer ? 'gold' : ''}">${l.type}</span><span class="tag">${esc(l.city)}</span><span class="tag">${mln(l.price * l.qty)} млн ₽</span></div>
+    <div class="m"><span class="tag ${l.dealer ? 'gold' : ''}">${l.type}</span><span class="tag">${esc(l.city)}</span><span class="tag">${usd(l.price * l.qty)}</span></div>
     <div class="f"><span class="ava">${l.mgr}</span>${ago(l.ago)}<span class="sla ${l.resp < 30 ? 'up' : ''}">· ответ ${l.resp} с</span><span class="score">${l.score}</span></div>
   </div>`;
 }
@@ -619,11 +685,11 @@ V.dealers = () => `
     ${kpi('Активные дилеры', 38, '', '+5 за квартал', 1)}
     ${kpi('Заказы дилеров', 264, 'авто', 'с начала года', 1)}
     ${kpi('Доля в выручке', 58, '%', 'опт растёт быстрее розницы', 1)}
-    ${kpi('Ждут оплаты', '6,4', 'млн ₽', '3 дилера', 0)}
+    ${kpi('Ждут оплаты', '$78 700', '', '3 дилера', 0)}
   </div>
   <div class="grid c2 mt">
     <div class="g card"><div class="ch"><h3>Партнёры</h3><span class="r">с начала года</span></div><div class="scroll"><table class="tbl"><thead><tr><th>Дилер</th><th>Авто</th><th>В работе</th><th>Последний заказ</th><th style="text-align:right">Оборот</th></tr></thead><tbody>
-      ${DEALERS.map(d => `<tr><td class="nm"><b>${d[0]}</b><small>${d[1]}</small></td><td class="mono">${d[2]}</td><td><span class="tag ${d[3] > 4 ? 'gold' : ''}">${d[3]} сделки</span></td><td style="color:var(--dim)">${d[4]}</td><td class="mono" style="text-align:right">${d[5]} млн</td></tr>`).join('')}
+      ${DEALERS.map(d => `<tr><td class="nm"><b>${d[0]}</b><small>${d[1]}</small></td><td class="mono">${d[2]}</td><td><span class="tag ${d[3] > 4 ? 'gold' : ''}">${d[3]} сделки</span></td><td style="color:var(--dim)">${d[4]}</td><td class="mono" style="text-align:right">${usd(d[5])}</td></tr>`).join('')}
     </tbody></table></div></div>
     <div class="g card"><div class="ch"><h3>Кабинет дилера</h3></div>
       <p style="color:var(--dim);font-size:13px;margin-bottom:14px">Каждый дилер видит свои заказы, статусы доставки, документы и ежедневную подборку авто под свой спрос. Новый заказ создаёт заявку в общей воронке.</p>
@@ -637,21 +703,21 @@ V.dealers = () => `
 
 V.finance = () => `
   <div class="grid c4">
-    ${kpi('Выручка за ноябрь', '412,6', 'млн ₽', '+18% к октябрю', 1)}
-    ${kpi('Валовая маржа', '38,2', 'млн ₽', '9,3% от выручки', 1)}
-    ${kpi('Средняя маржа с авто', '406', 'тыс ₽', 'дилеры 290 · розница 520', 1)}
-    ${kpi('Дебиторка', '11,8', 'млн ₽', '2 платежа просрочены', 0)}
+    ${kpi('Выручка за ноябрь', '$5,07', 'млн', '+18% к октябрю', 1)}
+    ${kpi('Валовая маржа', '$470 000', '', '9,3% от выручки', 1)}
+    ${kpi('Средняя маржа с авто', '$5 000', '', 'дилеры $3 600 · розница $6 400', 1)}
+    ${kpi('Дебиторка', '$145 000', '', '2 платежа просрочены', 0)}
   </div>
   <div class="grid c2 mt">
-    <div class="g card"><div class="ch"><h3>Выручка по месяцам</h3><span class="r">млн ₽</span></div>${area([182,205,198,236,251,274,262,298,321,349,371,412.6],['дек','янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя'])}</div>
+    <div class="g card"><div class="ch"><h3>Выручка по месяцам</h3><span class="r">млн $</span></div>${area([2.24,2.52,2.44,2.9,3.09,3.37,3.22,3.67,3.95,4.29,4.56,5.07],['дек','янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя'])}</div>
     <div class="g card"><div class="ch"><h3>Курсы для расчёта</h3><span class="r">обновлено 09:00</span></div>
       <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px">
-        ${[['KRW','₽ за 1 000 ₩','61,84','+1,8%',0,[58,59,59.6,60.2,60.8,61.2,61.84]],['CNY','₽ за 1 ¥','11,42','−0,4%',1,[11.6,11.55,11.5,11.48,11.45,11.44,11.42]],['USD','₽ за 1 $','81,30','+0,6%',0,[80.1,80.4,80.2,80.8,81,81.1,81.3]],['EUR','₽ за 1 €','94,05','+0,3%',0,[93.2,93.5,93.4,93.7,93.9,94,94.05]]].map(c => `<div class="g fx card" style="padding:14px 16px"><small>${c[0]} · ${c[1]}</small><div class="v">${c[2]}</div><span class="${c[4] ? 'up' : 'dn'}" style="font-size:12px">${c[3]} за неделю</span>${spark(c[5], c[4] ? '#A9CFA8' : '#E48A78').replace('class="spark"', 'class="spark" style="position:static;margin-top:8px;width:100%;height:36px"')}</div>`).join('')}
+        ${[['KRW','₩ за 1 $','1 384','+0,9%',1,[1362,1368,1371,1375,1379,1381,1384]],['CNY','¥ за 1 $','7,12','−0,3%',0,[7.15,7.14,7.14,7.13,7.13,7.12,7.12]],['RUB','₽ за 1 $','81,30','+0,6%',1,[80.1,80.4,80.2,80.8,81,81.1,81.3]],['EUR','$ за 1 €','1,16','+0,3%',0,[1.153,1.155,1.156,1.157,1.158,1.159,1.16]]].map(c => `<div class="g fx card" style="padding:14px 16px"><small>${c[0]} · ${c[1]}</small><div class="v">${c[2]}</div><span class="${c[4] ? 'up' : 'dn'}" style="font-size:12px">${c[3]} за неделю</span>${spark(c[5], c[4] ? '#A9CFA8' : '#E48A78').replace('class="spark"', 'class="spark" style="position:static;margin-top:8px;width:100%;height:36px"')}</div>`).join('')}
       </div>
     </div>
   </div>
   <div class="g card mt"><div class="ch"><h3>Маржа по моделям</h3><span class="r">средняя с одного авто</span></div>
-    <div class="bars">${[['Li Auto L9',690],['Genesis GV80',640],['Zeekr 001',520],['Hyundai Palisade',470],['Kia Carnival',430],['Xiaomi SU7',410],['Kia Sorento',340],['Geely Monjaro',280]].map((b, i) => `<div class="br"><span>${b[0]}</span><div class="tr"><i style="width:${b[1] / 690 * 100}%;animation-delay:${i * .06}s"></i></div><b>${b[1]} тыс</b></div>`).join('')}</div>
+    <div class="bars">${[['Li Auto L9',8500],['Genesis GV80',7900],['Zeekr 001',6400],['Hyundai Palisade',5800],['Kia Carnival',5300],['Xiaomi SU7',5000],['Kia Sorento',4200],['Geely Monjaro',3400]].map((b, i) => `<div class="br"><span>${b[0]}</span><div class="tr"><i style="width:${b[1] / 8500 * 100}%;animation-delay:${i * .06}s"></i></div><b>$${fmt(b[1])}</b></div>`).join('')}</div>
   </div>`;
 
 V.team = () => {
@@ -664,14 +730,14 @@ V.team = () => {
   </div>
   <div class="grid c3 mt">${T.map((t, i) => `<div class="g mgr"><div class="h"><div class="ava">${t[0]}</div><div><b>${MGR[t[0]].n}</b><small>${MGR[t[0]].r}</small></div><span class="rk">${i < 4 ? '№' + (i + 1) : ''}</span></div>
     <div class="stats">${t[0] === 'СН' ? `<div><small>Авто ведёт</small><b>87</b></div><div><small>Задержки</small><b>3</b></div><div><small>Статусы</small><b>авто</b></div>` : `<div><small>Заявки</small><b>${t[1]}</b></div><div><small>Ответ</small><b>${t[2]}</b></div><div><small>Конверсия</small><b>${t[3]}</b></div>`}</div>
-    <div style="display:flex;justify-content:space-between;color:var(--dim);font-size:12.5px"><span>${t[0] === 'СН' ? 'Выдано в ноябре' : 'Сделок в ноябре'}: <b style="color:var(--ink)">${t[4]}</b></span>${t[5] !== '—' ? `<span>${t[5]} млн ₽</span>` : ''}</div></div>`).join('')}
+    <div style="display:flex;justify-content:space-between;color:var(--dim);font-size:12.5px"><span>${t[0] === 'СН' ? 'Выдано в ноябре' : 'Сделок в ноябре'}: <b style="color:var(--ink)">${t[4]}</b></span>${t[5] !== '—' ? `<span>${usd(+t[5].replace(',', '.'))}</span>` : ''}</div></div>`).join('')}
     <div class="g card"><div class="ch"><h3>Что забрали агенты</h3></div><div class="bars">${[['Ответы о цене',64],['Квалификация',22],['Статусы доставки',41],['Подборки',33],['Отчёты',26]].map(b => `<div class="br"><span>${b[0]}</span><div class="tr"><i style="width:${b[1] / 64 * 100}%"></i></div><b>${b[1]} ч</b></div>`).join('')}</div></div>
   </div>`;
 };
 
 V.media = () => {
   const days = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'], d0 = 10;
-  const P = [[['Reels','GV80: цена под ключ',IC.ig,1],['Подборка','6 авто из Кореи',IC.tg,1]],[['Карусель','Как проходит выкуп',IC.ig,1],['Пост','Новинки Китая',IC.tg,1]],[['Reels','Li Auto L9 в порту',IC.ig,1],['Подборка','Авто до 4 млн',IC.tg,0]],[['Видео','Отзыв дилера',IC.content,0],['Подборка','Утренняя для дилеров',IC.tg,0]],[['Reels','Zeekr 001 за 60 сек',IC.ig,0]],[['Карусель','Корея или Китай',IC.ig,0],['Пост','Выдача в Алматы',IC.tg,0]],[['Подборка','Итоги недели',IC.tg,0]]];
+  const P = [[['Reels','GV80: цена под ключ',IC.ig,1],['Подборка','6 авто из Кореи',IC.tg,1]],[['Карусель','Как проходит выкуп',IC.ig,1],['Пост','Новинки Китая',IC.tg,1]],[['Reels','Li Auto L9 в порту',IC.ig,1],['Подборка','Авто до $50 000',IC.tg,0]],[['Видео','Отзыв дилера',IC.content,0],['Подборка','Утренняя для дилеров',IC.tg,0]],[['Reels','Zeekr 001 за 60 сек',IC.ig,0]],[['Карусель','Корея или Китай',IC.ig,0],['Пост','Выдача в Алматы',IC.tg,0]],[['Подборка','Итоги недели',IC.tg,0]]];
   return `<div class="grid c4">
     ${kpi('Публикаций в неделю', 26, '', '4 площадки', 1)}
     ${kpi('Охват за ноябрь', '1,9', 'млн', '+42% к октябрю', 1)}
@@ -701,11 +767,11 @@ V.agents = () => `
     <div class="g card"><div class="ch"><h3>Как ИИ видит заявку</h3></div>
       <div class="chat">
         <div class="msg"><small>Комментарий · Instagram</small>Цена?</div>
-        <div class="msg me"><small>Агент · 9 сек</small>Здравствуйте! Genesis GV80 3.5T 2023 под ключ до Москвы от 6,9 млн ₽. Вам для себя или для салона?</div>
+        <div class="msg me"><small>Агент · 9 сек</small>Здравствуйте! Genesis GV80 3.5T 2023 под ключ до Москвы от $84 900. Вам для себя или для салона?</div>
         <div class="msg"><small>Клиент</small>для салона, нужно 3 штуки, Алматы</div>
         <div class="msg me"><small>Агент</small>Понял. Для дилеров есть оптовые условия. Передаю менеджеру по Корее, расчёт до Алматы пришлём в течение 15 минут.</div>
       </div>
-      <div class="aisum" style="margin-top:14px"><b>${I(IC.spark)}Карточка в CRM</b>Дилер · Алматы · Genesis GV80 × 3 · бюджет ~21 млн ₽ · горячий, оценка 92 · менеджер Денис Цой</div>
+      <div class="aisum" style="margin-top:14px"><b>${I(IC.spark)}Карточка в CRM</b>Дилер · Алматы · Genesis GV80 × 3 · бюджет ~$258 000 · горячий, оценка 92 · менеджер Денис Цой</div>
     </div>
   </div>`;
 
@@ -717,20 +783,20 @@ function openLead(id) {
   $('#drawer').innerHTML = `<button class="x" id="dx" aria-label="Закрыть">${I(IC.x)}</button>
     <div class="dh"><small>Заявка №${l.id} · ${s[0]} · ${ago(l.ago)} назад</small><h2>${esc(l.name)}</h2>
     <div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag ${l.dealer ? 'gold' : ''}">${l.type}</span><span class="tag">${esc(l.city)}</span><span class="tag ok">оценка ${l.score}</span><span class="tag">первый ответ ${l.resp} с</span></div></div>
-    <div class="sec"><div class="aisum"><b>${I(IC.spark)}Сводка ИИ</b>${l.dealer ? `Салон, интерес к ${esc(l.car)} × ${l.qty}. Важны оптовые условия и сроки. Готов к предоплате при расчёте до конца недели.` : `Покупает для себя, ${esc(l.car)}, бюджет до ${mln(l.price + .4)} млн ₽. Важны комплектация и срок. Сравнивает с другими компаниями.`}</div></div>
+    <div class="sec"><div class="aisum"><b>${I(IC.spark)}Сводка ИИ</b>${l.dealer ? `Салон, интерес к ${esc(l.car)} × ${l.qty}. Важны оптовые условия и сроки. Готов к предоплате при расчёте до конца недели.` : `Покупает для себя, ${esc(l.car)}, бюджет до ${usd(l.price + .4)}. Важны комплектация и срок. Сравнивает с другими компаниями.`}</div></div>
     <div class="sec"><h4>Этап</h4><div class="stagepick">${STAGES.map((st, i) => `<button data-s="${i}" class="${i === l.stage ? 'on' : ''}">${st}</button>`).join('')}</div></div>
     <div class="sec"><h4>Запрос</h4><div class="facts">
       <div><small>Авто</small><b>${esc(l.car)}${l.qty > 1 ? ' × ' + l.qty : ''}</b></div><div><small>Откуда</small><b>${l.origin}</b></div>
-      <div><small>Бюджет</small><b>${mln(l.price * l.qty)} млн ₽</b></div><div><small>Менеджер</small><b>${m.n}</b></div></div></div>
+      <div><small>Бюджет</small><b>${usd(l.price * l.qty)}</b></div><div><small>Менеджер</small><b>${m.n}</b></div></div></div>
     <div class="sec"><h4>Переписка</h4><div class="chat">
       <div class="msg"><small>${s[0]} · клиент</small>${esc(l.msg)}</div>
       <div class="msg me"><small>Агент · ${l.resp} сек</small>Добрый день! Подберём ${esc(l.car)} под ваш запрос. Подскажите город доставки и желаемый год?</div>
       <div class="msg"><small>Клиент</small>${esc(l.city)}, не старше 2022</div>
       <div class="msg me"><small>${m.n}</small>Отправил подборку из 5 вариантов и расчёт под ключ. Могу забронировать лот до завтра.</div></div></div>
     <div class="sec"><h4>Расчёт под ключ за 1 авто</h4><div class="calc">
-      <div><span>Цена лота</span><b>${mln(base)} млн ₽</b></div><div><span>Доставка до ${esc(l.city)}</span><b>${mln(ship)} млн ₽</b></div>
-      <div><span>Пошлины и сборы</span><b>${mln(duty)} млн ₽</b></div><div><span>Услуги PAKIM</span><b>${mln(Math.max(fee, .2))} млн ₽</b></div>
-      <div class="tot"><span>Итого</span><b>${mln(l.price)} млн ₽</b></div></div></div>
+      <div><span>Цена лота</span><b>${usd(base)}</b></div><div><span>Доставка до ${esc(l.city)}</span><b>${usd(ship)}</b></div>
+      <div><span>Пошлины и сборы</span><b>${usd(duty)}</b></div><div><span>Услуги PAKIM</span><b>${usd(Math.max(fee, .2))}</b></div>
+      <div class="tot"><span>Итого</span><b>${usd(l.price)}</b></div></div></div>
     <div class="acts"><button class="btn">${I(IC.doc)}Отправить подборку</button><button class="btn ghost" id="next">${I(IC.arrow)}Следующий этап</button></div>`;
   $('#drawer').classList.add('on'); $('#scrim').classList.add('on'); $('#drawer').setAttribute('aria-hidden', 'false');
   $('#dx').onclick = closeLead;
@@ -761,6 +827,15 @@ function incoming(manual) {
   refresh();
 }
 $('#newLead').onclick = () => incoming(true);
+const intro = $('#intro');
+intro.querySelectorAll('[data-go]').forEach(b => { const ic = {crm:IC.crm, fleet:IC.ship, finance:IC.fin, agents:IC.ai}[b.dataset.go]; b.innerHTML = b.innerHTML.replace(/ICON_\w+/, I(ic)); b.onclick = () => { closeIntro(); go(b.dataset.go); }; });
+function openIntro() { intro.classList.add('on'); intro.setAttribute('aria-hidden', 'false'); }
+function closeIntro() { intro.classList.remove('on'); intro.setAttribute('aria-hidden', 'true'); try { sessionStorage.setItem('pk_intro', '1'); } catch (e) {} }
+$('#introGo').onclick = closeIntro;
+intro.onclick = e => { if (e.target === intro) closeIntro(); };
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && intro.classList.contains('on')) closeIntro(); });
+$('#demoBtn').onclick = openIntro;
+(() => { let seen = false; try { seen = !!sessionStorage.getItem('pk_intro'); } catch (e) {} if (!seen && !/[?&]nointro/.test(location.search)) setTimeout(openIntro, 500); })();
 $('#bell').onclick = () => toast('Уведомления', 'Новых важных событий нет: агенты держат все заявки в работе', IC.bell);
 setInterval(() => { if (!document.hidden) incoming(); }, 22000);
 
@@ -775,6 +850,7 @@ function draw(anim) {
   const r = ROUTES[cur];
   $('#ttl').innerHTML = cur === 'overview' ? 'Обзор <em>компании</em>' : r.t;
   $('#sub').textContent = today + (cur === 'crm' ? ` · ${LEADS.length} заявок в воронке` : '');
+  $('#hint').innerHTML = I(IC.spark) + '<span>' + HINT[cur] + '</span>';
   const v = $('#view'); v.innerHTML = `<div class="${anim ? 'view' : ''}">${V[cur]()}</div>`;
   bind();
 }
