@@ -1,0 +1,1110 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>PAKIM — экспорт автомобилей из Кореи и Китая</title>
+<meta name="description" content="Оптовый экспорт новых и подержанных автомобилей из Кореи и Китая для дилеров и автосалонов. Цена фиксируется в договоре.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0908; --bg2:#100E0C; --cream:#F1EADF; --ink:#14100D;
+  --text:#F3EDE4; --muted:#A89E92; --bronze:#C8A27C; --wine:#6E2A1C; --ok:#8FA45A;
+  --ld:rgba(243,237,228,.11); --ld2:rgba(243,237,228,.24); --ll:rgba(20,16,13,.16);
+  --pad:clamp(20px,5vw,80px);
+  --disp:Oswald,"Arial Narrow",sans-serif;
+  --serif:"Cormorant Garamond",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-padding-top:84px}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.lock{overflow:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+:focus-visible{outline:2px solid var(--bronze);outline-offset:3px}
+.wrap{max-width:1360px;margin:0 auto;padding:0 var(--pad)}
+.cap{font-weight:500;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--bronze)}
+.sec-light .cap{color:var(--wine)}
+.disp{font-family:var(--disp);font-weight:600;text-transform:uppercase;line-height:.98}
+.ed{font-family:var(--serif);font-weight:500;font-size:clamp(46px,6.6vw,112px);line-height:.98;letter-spacing:-.025em}
+.ed em{font-style:italic;font-weight:500;color:var(--bronze)}
+.sec-light .ed em{color:var(--wine)}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
+.wi{display:inline-block;will-change:transform}
+.sec{position:relative;padding:clamp(90px,11vw,170px) 0}
+.sec-dark{background:var(--bg);color:var(--text)}
+.sec-light{background:var(--cream);color:var(--ink)}
+.muted{color:var(--muted)}
+.lead{font-size:clamp(17px,1.4vw,20px);line-height:1.6;color:var(--muted);max-width:520px}
+.sec-light .lead{color:#675c52}
+
+/* grain + progress + loader + cursor */
+.grain{position:fixed;inset:-50%;z-index:150;pointer-events:none;opacity:.08;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+#prog{position:fixed;left:0;top:0;height:2px;width:100%;background:var(--bronze);transform-origin:left;transform:scaleX(0);z-index:120}
+#loader{position:fixed;inset:0;z-index:500;background:var(--bg);display:grid;place-items:center}
+#loader .lg{font-family:var(--disp);font-weight:600;font-size:clamp(34px,6vw,64px);letter-spacing:.42em;padding-left:.42em}
+#loader .ln2{width:min(260px,60vw);height:1px;background:var(--ld2);margin:26px auto 14px;position:relative;overflow:hidden}
+#loader .ln2 i{position:absolute;inset:0;background:var(--bronze);transform:scaleX(0);transform-origin:left}
+#loader .ct{text-align:center;font-size:12px;letter-spacing:.2em;color:var(--muted);font-variant-numeric:tabular-nums}
+#cur{position:fixed;left:0;top:0;z-index:300;pointer-events:none;width:36px;height:36px;margin:-18px 0 0 -18px;border:1px solid rgba(243,237,228,.55);border-radius:50%;display:grid;place-items:center;mix-blend-mode:difference;transition:width .3s,height .3s,margin .3s,background .3s,border-color .3s;opacity:0}
+#cur span{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:0;transition:opacity .2s;color:var(--bg)}
+#cur.hov{width:64px;height:64px;margin:-32px 0 0 -32px}
+#cur.view{width:96px;height:96px;margin:-48px 0 0 -48px;background:var(--bronze);border-color:var(--bronze);mix-blend-mode:normal}
+#cur.view span{opacity:1}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 34px;background:var(--text);color:var(--bg);font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;transition:background .3s,color .3s}
+.btn:hover{background:var(--bronze)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--ld2)}
+.btn.ghost:hover{border-color:var(--bronze);color:var(--bronze)}
+.sec-light .btn{background:var(--ink);color:var(--cream)}
+.sec-light .btn:hover{background:var(--wine)}
+.alink{display:inline-flex;gap:10px;align-items:center;font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase;padding-bottom:6px;background:linear-gradient(currentColor,currentColor) left bottom/100% 1px no-repeat;opacity:.9;transition:color .25s,background-size .4s}
+.alink:hover{color:var(--bronze);background-size:35% 1px}
+.sec-light .alink:hover{color:var(--wine)}
+
+/* header */
+.hd{position:fixed;inset:0 0 auto;z-index:90;height:76px;display:flex;align-items:center;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.hd.s{background:rgba(10,9,8,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--ld)}
+.hd .wrap{width:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.logo{font-family:var(--disp);font-weight:600;letter-spacing:.34em;font-size:20px;color:var(--text)}
+.nav{display:flex;gap:38px}
+.nav a,.nav button{position:relative;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#d8d0c5;padding:6px 0}
+.nav a::after,.nav button::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--bronze);transform:scaleX(0);transform-origin:right;transition:transform .35s}
+.nav a:hover::after,.nav button:hover::after{transform:scaleX(1);transform-origin:left}
+.hd-r{justify-self:end;display:flex;gap:18px;align-items:center}
+.hd-r .btn{height:42px;padding:0 22px;font-size:12px}
+.burger{display:none;width:40px;height:40px;place-content:center;gap:7px}
+.burger i{display:block;width:24px;height:1.5px;background:var(--text);transition:.25s}
+.menu{position:fixed;inset:0;z-index:85;background:var(--bg);display:flex;flex-direction:column;justify-content:center;padding:100px var(--pad) 60px;opacity:0;pointer-events:none;transition:opacity .35s}
+.menu.on{opacity:1;pointer-events:auto}
+.menu a,.menu button{font-family:var(--serif);font-weight:500;font-size:clamp(44px,11vw,84px);line-height:1.1;display:block;text-align:left;border-bottom:1px solid var(--ld);padding:10px 0;transition:color .2s,padding .3s}
+.menu a:hover,.menu button:hover{color:var(--bronze);padding-left:10px}
+
+/* hero */
+.hero{height:100svh;min-height:640px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 64% 50%,#201813 0%,#0A0908 62%)}
+.hero-stage{position:absolute;inset:0}
+.hero-txt{position:absolute;left:0;bottom:3vh;z-index:0;white-space:nowrap;will-change:transform;pointer-events:none}
+.hero-txt h1{font-family:var(--disp);font-weight:700;text-transform:uppercase;font-size:clamp(120px,25vw,400px);line-height:.86;letter-spacing:-.01em;padding-left:3vw;color:var(--text)}
+.cv-wrap{position:absolute;inset:0;z-index:1}
+#car3d{position:absolute;inset:0;width:100%;height:100%;display:block}
+.co{position:absolute;inset:0;pointer-events:none;z-index:2}
+.co svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.co polyline{fill:none;stroke:rgba(243,237,228,.6);stroke-width:1}
+.co-dot{position:absolute;left:0;top:0;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--bronze);animation:ping 2.4s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(200,162,124,.55)}80%,100%{box-shadow:0 0 0 16px rgba(200,162,124,0)}}
+.co-lab{position:absolute;left:0;top:0;width:176px;text-shadow:0 0 12px #0A0908,0 0 4px #0A0908}
+.co-lab b{display:block;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:3px}
+.co-lab span{display:block;font-size:14px;line-height:1.35;color:#d8d0c5}
+.co-lab.r{text-align:right}
+.hero-fb{position:absolute;left:62%;top:44%;width:min(900px,70vw);transform:translate(-50%,-50%);display:none;-webkit-mask-image:radial-gradient(ellipse 40% 46% at 50% 50%,#000 30%,transparent 100%);mask-image:radial-gradient(ellipse 40% 46% at 50% 50%,#000 30%,transparent 100%)}
+.hero.nogl .hero-fb{display:block}.hero.nogl .cv-wrap{display:none}
+.hero-copy{position:absolute;left:var(--pad);top:calc(50% - 160px);z-index:4;max-width:330px}
+.hero-copy .cap{display:block;margin-bottom:20px}
+.hero-copy p{color:#d8d0c5;font-size:17px;line-height:1.6;margin-bottom:30px}
+.hero-copy .row{display:flex;flex-direction:column;align-items:flex-start;gap:22px}
+.hero-hint{position:absolute;right:var(--pad);bottom:calc(3vh + 4px);z-index:4;font-size:11.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:flex;gap:14px;align-items:center}
+.hero-hint i{display:block;width:56px;height:1px;background:var(--ld2);position:relative;overflow:hidden}
+.hero-hint i::after{content:"";position:absolute;inset:0;width:30%;background:var(--bronze);animation:slide 2s infinite}
+@keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(340%)}}
+.hero-credit{position:absolute;left:var(--pad);bottom:calc(3vh + 4px);z-index:4;font-size:11px;color:#6f665c}
+
+/* ticker */
+.tick{overflow:hidden;white-space:nowrap;background:var(--bg);border-top:1px solid var(--ld);border-bottom:1px solid var(--ld);padding:26px 0}
+.tick-in{display:inline-flex;animation:tk 60s linear infinite}
+.tick-in span{font-family:var(--disp);font-weight:600;text-transform:uppercase;font-size:clamp(30px,3.6vw,56px);color:transparent;-webkit-text-stroke:1px rgba(243,237,228,.4);display:inline-flex;align-items:center}
+.tick-in span:nth-child(3n){color:var(--text);-webkit-text-stroke:0}
+.tick-in span::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--bronze);margin:0 clamp(28px,3.4vw,52px)}
+@keyframes tk{to{transform:translateX(-50%)}}
+
+/* lines */
+.gap{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,6vw,100px);align-items:end}
+.gap h2{margin-bottom:40px}
+.lines{display:grid;grid-template-columns:repeat(5,1fr);height:clamp(320px,38vw,470px);align-items:end}
+.ln{height:calc(var(--h)*1%);display:flex;flex-direction:column;padding-right:8px;min-width:0}
+.ln .n{font-family:var(--disp);font-weight:600;font-size:clamp(30px,3.6vw,54px);line-height:1;white-space:nowrap}
+.ln .c{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#675c52;margin:9px 0 12px;line-height:1.4}
+.ln .stem{flex:1;width:1px;background:var(--ink);position:relative;transform-origin:bottom}
+.ln .stem::after{content:"";position:absolute;left:-3.5px;bottom:-4px;width:8px;height:8px;border-radius:50%;background:var(--ink)}
+
+/* route */
+.route{padding:0;height:100svh;min-height:680px;overflow:hidden}
+.route-in{height:100%;display:grid;grid-template-rows:auto 1fr auto;padding-top:112px;padding-bottom:52px}
+.route-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.route-map{position:relative;width:100%;max-width:1100px;margin:auto;aspect-ratio:1000/340}
+.route-map svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.rbase{fill:none;stroke:var(--ld2);stroke-width:1.5;stroke-dasharray:3 7}
+.rline{fill:none;stroke:var(--bronze);stroke-width:2.5;stroke-linecap:round}
+.rcar{fill:var(--text);filter:drop-shadow(0 0 10px rgba(200,162,124,.9))}
+.node{position:absolute;transform:translate(-50%,-50%);display:grid;place-items:center}
+.node b{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--ld2);background:var(--bg);transition:.35s}
+.node.on b{background:var(--bronze);border-color:var(--bronze);box-shadow:0 0 0 7px rgba(200,162,124,.16)}
+.node span{position:absolute;top:24px;white-space:nowrap;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .3s}
+.node.up span{top:auto;bottom:24px}
+.node.on span{color:var(--text)}
+.route-info{display:grid;grid-template-columns:auto 1fr;gap:6px 30px;align-items:start;border-top:1px solid var(--ld);padding-top:24px}
+.route-info .big{font-family:var(--disp);font-weight:600;font-size:clamp(56px,7vw,104px);line-height:.9;color:var(--bronze);grid-row:span 2}
+.route-info h3{font-family:var(--serif);font-weight:500;font-size:clamp(32px,3.4vw,50px);line-height:1}
+.route-info p{color:#cfc6ba;max-width:640px;min-height:3.4em}
+.route-info .t{transition:opacity .25s,transform .25s}
+
+/* cards */
+.car-it{display:block;text-align:left;width:100%}
+.car-it .ph{aspect-ratio:4/3;overflow:hidden;background:#e4dccf;position:relative}
+.car-it.big .ph{aspect-ratio:5/4}
+.car-it .ph img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.car-it:hover .ph img{transform:scale(1.06)}
+.car-it .ph .ph-n{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--disp);font-size:26px;text-transform:uppercase;color:#9a8f83}
+.car-it .tp{display:flex;justify-content:space-between;gap:14px;align-items:baseline;margin-top:20px}
+.car-it h3{font-family:var(--serif);font-weight:600;font-size:clamp(28px,2.5vw,38px);line-height:1.05}
+.car-it.big h3{font-size:clamp(34px,3.4vw,52px)}
+.car-it .or{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);white-space:nowrap}
+.sec-dark .car-it .or{color:var(--bronze)}
+.car-it .tr{font-size:14.5px;color:#675c52;margin-top:4px;min-height:1.4em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sec-dark .car-it .tr{color:var(--muted)}
+.car-it .mt{font-size:13.5px;color:#675c52;margin-top:12px;padding-top:12px;border-top:1px solid var(--ll)}
+.sec-dark .car-it .mt{color:var(--muted);border-color:var(--ld)}
+.car-it .pr{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px}
+.car-it .pr b{font-family:var(--disp);font-weight:600;font-size:clamp(24px,2vw,32px);font-variant-numeric:tabular-nums}
+.car-it .pr small{font-size:12.5px;color:#8a7f73}
+.car-it .rq{display:inline-block;margin-top:14px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid var(--ll);padding-bottom:4px;transition:color .2s,border-color .2s}
+.sec-dark .car-it .rq{border-color:var(--ld2)}
+.car-it .rq:hover{color:var(--wine);border-color:var(--wine)}
+.sec-dark .car-it .rq:hover{color:var(--bronze);border-color:var(--bronze)}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,3vw,52px) clamp(20px,2.4vw,36px)}
+
+/* teaser */
+.ct-h{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:clamp(44px,6vw,90px)}
+.ct-h p{max-width:380px;color:#675c52;margin-bottom:26px}
+.tz{display:grid;grid-template-columns:7fr 5fr;gap:clamp(36px,5vw,80px) clamp(28px,4vw,72px);align-items:start}
+.tz>:first-child{grid-row:span 2}
+.tz>:nth-child(3){margin-left:12%}
+
+/* catalog view */
+.cview{position:fixed;inset:0;z-index:80;background:var(--bg);overflow-y:auto;opacity:0;pointer-events:none;transform:translateY(24px);transition:opacity .4s,transform .5s cubic-bezier(.2,.7,.2,1);padding:120px 0 100px}
+.cview.on{opacity:1;pointer-events:auto;transform:none}
+.cview .sub{color:var(--muted);max-width:560px;margin:22px 0 46px}
+.filters{display:flex;flex-wrap:wrap;gap:20px 56px;border-top:1px solid var(--ld);border-bottom:1px solid var(--ld);padding:22px 0;margin-bottom:48px;align-items:center}
+.fgrp{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.fgrp>span{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#6f665c}
+.ft{font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:6px 0;border-bottom:1px solid transparent;transition:.2s}
+.ft:hover{color:var(--text)}
+.ft.on{color:var(--text);border-color:var(--bronze)}
+.fsel{margin-left:auto;background:transparent;border:0;border-bottom:1px solid var(--ld2);font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text);padding:6px 24px 6px 0;outline:0;cursor:pointer}
+.fsel option{background:var(--bg2);color:var(--text)}
+.cview .foot-note{margin-top:60px;padding-top:26px;border-top:1px solid var(--ld);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.cview .empty{padding:80px 0;color:var(--muted)}
+
+/* rows */
+.rowsl{border-top:1px solid var(--ld)}
+.rowsl>div{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;padding:30px 0;border-bottom:1px solid var(--ld);align-items:baseline;transition:padding .4s}
+.rowsl>div:hover{padding-left:14px}
+.rowsl h3{font-family:var(--serif);font-weight:600;font-size:clamp(28px,2.6vw,38px);line-height:1.05}
+.rowsl p{color:var(--muted);font-size:16px}
+.rowsl.light{border-color:var(--ll)}.rowsl.light>div{border-color:var(--ll)}.rowsl.light p{color:#675c52}
+.dl{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,6vw,100px)}
+.dl h2{margin:0 0 34px}
+.dl .lead{margin-bottom:36px}
+.priv{margin-top:34px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.priv p{max-width:440px;color:var(--muted);font-size:16px}
+
+/* quiz */
+.match{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,6vw,100px);align-items:start}
+.match-l{position:sticky;top:116px}
+.match-l h2{margin-bottom:26px}
+.get{margin-top:38px;border-top:1px solid var(--ld)}
+.get li{list-style:none;padding:16px 0;border-bottom:1px solid var(--ld);font-size:16px;color:#d8d0c5}
+.box{border:1px solid var(--ld2);padding:clamp(24px,3.2vw,48px);background:var(--bg2);min-height:540px}
+.steps{display:flex;gap:6px;margin-bottom:38px}
+.steps i{flex:1;height:2px;background:var(--ld2);transition:background .3s}
+.steps i.on{background:var(--bronze)}
+.q-n{color:var(--muted);font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px}
+.q-t{font-family:var(--serif);font-weight:500;font-size:clamp(34px,3.6vw,52px);line-height:1;margin-bottom:14px;letter-spacing:-.015em}
+.q-s{color:var(--muted);font-size:16px;margin-bottom:30px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{min-height:72px;padding:16px 22px;border:1px solid var(--ld2);text-align:left;font-weight:500;font-size:16.5px;transition:.25s;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.opt small{font-size:13px;color:var(--muted);font-weight:400}
+.opt:hover{border-color:var(--bronze);background:rgba(200,162,124,.06);padding-left:28px}
+.q-foot{margin-top:32px;display:flex;justify-content:space-between;align-items:center;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.q-foot button.bk{color:var(--muted)}.q-foot button.bk:hover{color:var(--text)}
+.fld{display:grid;gap:8px;margin-bottom:20px}
+.fld label{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.fld input,.fld textarea{background:transparent;border:0;border-bottom:1px solid var(--ld2);height:52px;padding:0;outline:0;transition:border-color .2s;width:100%;font-size:17px}
+.fld textarea{height:100px;padding:12px 0;resize:vertical}
+.fld input:focus,.fld textarea:focus{border-color:var(--bronze)}
+.fld input::placeholder,.fld textarea::placeholder{color:#6a6157}
+.err{color:#E58C7A;font-size:14px;min-height:22px}
+.doc-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:24px;border-bottom:1px solid var(--ld2)}
+.doc-top .lg{font-family:var(--disp);font-weight:600;letter-spacing:.32em;font-size:22px}
+.doc-top div:last-child{text-align:right;color:var(--muted);font-size:13.5px;line-height:1.55}
+.doc h3{font-family:var(--serif);font-weight:500;font-size:clamp(34px,3.4vw,46px);margin:28px 0 12px;line-height:1}
+.doc .par{color:var(--muted);font-size:14.5px;margin-bottom:8px}
+.dcar{display:grid;grid-template-columns:96px 1fr auto;gap:18px;padding:20px 0;border-bottom:1px solid var(--ld);align-items:center}
+.dcar .th{aspect-ratio:4/3;background:#1a1612;overflow:hidden}
+.dcar .th img{width:100%;height:100%;object-fit:cover}
+.dcar b{font-size:18px;font-weight:500;display:block;line-height:1.3}
+.dcar p{color:var(--muted);font-size:13.5px;margin-top:2px}
+.dcar .pr{text-align:right;font-family:var(--disp);font-size:26px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.dcar .pr small{display:block;font-family:Inter;font-size:11.5px;color:var(--muted);font-weight:400}
+.terms{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:26px 0;border-bottom:1px solid var(--ld)}
+.terms b{display:block;font-family:var(--disp);font-weight:600;font-size:23px;text-transform:uppercase}
+.terms span{color:var(--muted);font-size:13px}
+.dealer-b{margin-top:24px;padding-top:22px;border-top:1px solid var(--bronze);font-size:15px;color:#d8d0c5}
+.dealer-b b{display:block;font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:6px}
+.status{margin-top:24px;display:flex;gap:12px;align-items:flex-start;color:var(--muted);font-size:14.5px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);margin-top:9px;flex:none;box-shadow:0 0 0 4px rgba(143,164,90,.18)}
+.doc-act{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.doc-note{margin-top:20px;font-size:12.5px;color:#7a7066}
+
+/* faq + request */
+.faq{border-top:1px solid var(--ld)}
+.faq details{border-bottom:1px solid var(--ld)}
+.faq summary{list-style:none;display:flex;justify-content:space-between;gap:20px;padding:28px 0;font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.3vw,32px);line-height:1.15;cursor:pointer}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--bronze);font-family:Inter;font-size:28px;line-height:1;transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 30px;color:var(--muted);max-width:720px}
+.req{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,6vw,100px);align-items:start}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:26px;border:1px solid var(--ld2)}
+.seg button{height:54px;font-weight:500;font-size:13px;letter-spacing:.12em;text-transform:uppercase;transition:.2s;border-left:1px solid var(--ld2)}
+.seg button:first-child{border-left:0}
+.seg button.on{background:var(--text);color:var(--bg)}
+.ok-box h3{font-family:var(--serif);font-weight:500;font-size:clamp(40px,4.4vw,62px);margin:18px 0 14px;line-height:1}
+.ok-box p{color:var(--muted);max-width:470px}
+.src-line{margin-top:24px;padding-top:18px;border-top:1px solid var(--ld);font-size:13px;color:var(--muted)}
+
+/* footer */
+.foot{position:relative;overflow:hidden;background:var(--bg);padding-top:clamp(70px,9vw,130px)}
+.foot-top{display:grid;grid-template-columns:1fr 1.3fr 320px;gap:40px;align-items:center;position:relative;z-index:2}
+.foot-menu a,.foot-menu button{display:block;text-align:left;font-size:13px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:9px 0;color:#cfc6ba}
+.foot-menu a:hover,.foot-menu button:hover{color:var(--bronze)}
+.foot-menu .cap{display:block;margin-bottom:12px}
+.foot-car{-webkit-mask-image:radial-gradient(ellipse 56% 60% at 50% 50%,#000 45%,transparent 100%);mask-image:radial-gradient(ellipse 56% 60% at 50% 50%,#000 45%,transparent 100%)}
+.foot-cta h3{font-family:var(--serif);font-weight:500;font-size:40px;margin-bottom:12px;line-height:1}
+.foot-cta p{color:var(--muted);font-size:15px;margin-bottom:22px}
+.foot-cta .soc{display:flex;gap:22px;margin-top:26px;padding-top:18px;border-top:1px solid var(--ld);font-size:12.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
+.foot-cta .soc a:hover{color:var(--bronze)}
+.foot-big{white-space:nowrap;font-family:var(--disp);font-weight:700;text-transform:uppercase;font-size:clamp(100px,23vw,360px);line-height:.82;margin-top:clamp(20px,4vw,60px);margin-bottom:-.12em;padding-left:2vw;will-change:transform}
+.foot-bar{position:relative;z-index:3;border-top:1px solid var(--ld);padding:20px 0 100px;background:var(--bg);font-size:12px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+
+/* chat + demo panel */
+.chat-fab{position:fixed;right:20px;bottom:20px;z-index:70;height:52px;padding:0 24px;background:var(--text);color:var(--bg);font-weight:600;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:12px;border-radius:2px;box-shadow:0 12px 40px rgba(0,0,0,.45)}
+.chat-fab i{width:8px;height:8px;border-radius:50%;background:#4d8a2f}
+.chat-fab .ic{display:none}
+.chat{position:fixed;right:20px;bottom:84px;z-index:70;width:min(392px,calc(100vw - 32px));height:min(560px,calc(100svh - 120px));background:var(--bg2);border:1px solid var(--ld2);display:none;flex-direction:column;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6);color:var(--text)}
+.chat.on{display:flex}
+.chat-h{padding:18px 20px;border-bottom:1px solid var(--ld);display:flex;justify-content:space-between;align-items:center}
+.chat-h b{font-weight:500;font-size:15.5px}.chat-h span{display:block;color:var(--muted);font-size:12.5px}
+.chat-h button{font-size:26px;color:var(--muted);line-height:1}
+.chat-m{flex:1;overflow:auto;padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:86%;padding:11px 15px;font-size:14.5px;line-height:1.45;animation:in .3s}
+.m.b{background:#1a1612;border:1px solid var(--ld);align-self:flex-start}
+.m.u{background:var(--text);color:var(--bg);align-self:flex-end}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.qr{display:flex;flex-wrap:wrap;gap:8px;padding:0 20px 18px}
+.qr button{padding:10px 16px;border:1px solid var(--ld2);font-size:14px;transition:.15s}
+.qr button:hover{border-color:var(--bronze)}
+.qr form{display:flex;gap:8px;width:100%}
+.qr input{flex:1;height:46px;border:1px solid var(--ld2);background:transparent;padding:0 14px;outline:0;min-width:0}
+.qr input:focus{border-color:var(--bronze)}
+.qr .btn{height:46px;padding:0 18px;font-size:12px}
+.demo-fab{position:fixed;left:20px;bottom:20px;z-index:70;height:42px;padding:0 16px;border:1px solid var(--ld2);background:rgba(16,14,12,.94);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;gap:10px;align-items:center}
+.demo-fab:hover{color:var(--text);border-color:var(--bronze)}
+.demo-fab b{color:var(--bg);background:var(--bronze);padding:1px 8px;font-size:12px;font-weight:600}
+.shade{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:95;opacity:0;pointer-events:none;transition:.25s}
+.shade.on{opacity:1;pointer-events:auto}
+.panel{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--bg2);border-left:1px solid var(--ld2);z-index:100;transform:translateX(104%);transition:.3s;overflow:auto;padding:30px;color:var(--text)}
+.panel.on{transform:none}
+.panel h3{font-family:var(--serif);font-weight:500;font-size:40px;margin-bottom:8px;line-height:1}
+.panel .sub{color:var(--muted);font-size:14.5px;margin-bottom:24px}
+.panel .x{float:right;font-size:30px;color:var(--muted);line-height:1}
+.ld{padding:18px 0;border-top:1px solid var(--ld)}
+.ld.new{animation:flash 2.2s}
+@keyframes flash{0%,60%{background:rgba(200,162,124,.12)}100%{background:transparent}}
+.ld-h{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.ld-h b{font-weight:500;font-size:16px}.ld-h span{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ld p{color:var(--muted);font-size:14px;margin:3px 0 10px}
+.tg{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tg span.g{color:var(--bronze)}
+.hint{margin-top:24px;padding-top:18px;border-top:1px solid var(--ld);font-size:13px;color:var(--muted);line-height:1.55}
+.hint code{color:var(--bronze);font-size:12.5px}
+
+@media(max-width:1100px){.nav{gap:24px}}
+@media(max-width:980px){
+  .hd .wrap{grid-template-columns:1fr auto}
+  .nav,.hd-r .btn{display:none}
+  .burger{display:grid}
+  .gap,.match,.req,.dl,.foot-top{grid-template-columns:1fr}
+  .match-l{position:static}
+  .cgrid{grid-template-columns:1fr 1fr}
+  .tz{grid-template-columns:1fr}.tz>:first-child{grid-row:auto}.tz>:nth-child(3){margin-left:0}
+  .rowsl>div{grid-template-columns:1fr;gap:8px}
+  /* hero: машина сверху, текст снизу, ничего не перекрывается */
+  .hero{display:flex;flex-direction:column}
+  .hero-stage{position:relative;inset:auto;flex:1;min-height:0}
+  .cv-wrap{top:76px}
+  .hero-txt{bottom:0}
+  .hero-copy{position:relative;order:2;left:auto;top:auto;max-width:none;padding:18px var(--pad) 26px;background:linear-gradient(0deg,var(--bg) 70%,transparent);z-index:4}
+  .hero-copy p,.hero-copy .cap,.hero-hint,.hero-credit{display:none}
+  .hero-copy .row{flex-direction:row;align-items:center;flex-wrap:wrap;gap:22px}
+  .hero-copy .btn{flex:1;min-width:220px}
+  .route-in{padding-top:96px}
+  .foot-top .foot-car{order:-1}
+  .fsel{margin-left:0}
+}
+@media(max-width:640px){
+  body{font-size:16px}
+  .opts{grid-template-columns:1fr}
+  .terms{grid-template-columns:1fr 1fr}
+  .dcar{grid-template-columns:72px 1fr}.dcar .pr{grid-column:1/-1;text-align:left}
+  .seg{grid-template-columns:1fr}.seg button{border-left:0;border-top:1px solid var(--ld2)}.seg button:first-child{border-top:0}
+  .cgrid{grid-template-columns:1fr}
+  .lines{height:360px}.ln .c{font-size:9.5px}.ln{padding-right:4px}.ln .n{font-size:26px}
+  .route-info{grid-template-columns:1fr;gap:4px}.route-info .big{grid-row:auto;font-size:56px}
+  .node span{font-size:9.5px}
+  .node:nth-child(odd) span{max-width:84px;white-space:normal;text-align:center}
+  .priv{flex-direction:column;align-items:flex-start}
+  .co-lab{width:118px}.co-lab b{font-size:9.5px}.co-lab span{font-size:12px}
+  /* плавающие кнопки: демо-панель скрыта, чат появляется после первого экрана и компактный */
+  .demo-fab{display:none}
+  .chat-fab{width:52px;height:52px;padding:0;border-radius:50%;justify-content:center;font-size:0;gap:0;right:14px;bottom:14px;opacity:0;pointer-events:none;transform:scale(.8);transition:opacity .3s,transform .3s}
+  .chat-fab.show{opacity:1;pointer-events:auto;transform:none}
+  .chat-fab i,.chat-fab .tx{display:none}
+  .chat-fab .ic{display:block}
+}
+@media print{
+  body{background:#fff;color:#000}
+  body>*:not(main){display:none!important}
+  main>section:not(#match){display:none!important}
+  #match .match-l,.doc-act,.doc-note,.status{display:none!important}
+  #match{padding:0!important;background:#fff}.match{display:block}
+  .box{border:0;background:#fff;color:#000;padding:0}
+  .doc-top,.dcar,.terms{border-color:#ccc}.dcar p,.terms span,.doc-top div:last-child,.doc .par{color:#444}
+  .dealer-b{border-color:#999;color:#000}
+}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div id="prog"></div>
+<div id="cur"><span>Смотреть</span></div>
+<div id="loader"><div><div class="lg">PAKIM</div><div class="ln2"><i id="ldbar"></i></div><div class="ct" id="ldct">0</div></div></div>
+
+<header class="hd" id="hd"><div class="wrap">
+  <a href="#top" class="logo" data-go="#top">PAKIM</a>
+  <nav class="nav">
+    <button data-catalog>Каталог</button>
+    <a href="#dealers" data-go="#dealers">Дилерам</a>
+    <a href="#process" data-go="#process">Как работаем</a>
+    <a href="#guarantees" data-go="#guarantees">Гарантии</a>
+    <a href="#faq" data-go="#faq">Вопросы</a>
+  </nav>
+  <div class="hd-r"><a href="#request" class="btn ghost" data-go="#request">Оставить заявку</a><button class="burger" id="burger" aria-label="Меню"><i></i><i></i></button></div>
+</div></header>
+<nav class="menu" id="menu">
+  <button data-catalog>Каталог</button>
+  <a href="#dealers" data-go="#dealers">Дилерам</a>
+  <a href="#process" data-go="#process">Как работаем</a>
+  <a href="#guarantees" data-go="#guarantees">Гарантии</a>
+  <a href="#request" data-go="#request">Заявка</a>
+</nav>
+
+<section class="cview" id="cview" data-lenis-prevent aria-label="Каталог">
+  <div class="wrap">
+    <span class="cap">Каталог PAKIM</span>
+    <h2 class="ed" style="margin-top:18px">Автомобили <em>в наличии</em></h2>
+    <p class="sub">Подборка из актуальной базы PAKIM. В полной базе более 287 тысяч автомобилей из Кореи и Китая, русскоязычный поиск по Encar и Dongchedi.</p>
+    <div class="filters">
+      <div class="fgrp"><span>Откуда</span><button class="ft on" data-f="o" data-v="">Все</button><button class="ft" data-f="o" data-v="K">Корея</button><button class="ft" data-f="o" data-v="C">Китай</button></div>
+      <div class="fgrp"><span>Цена</span><button class="ft on" data-f="b" data-v="">Любая</button><button class="ft" data-f="b" data-v="0">до 2 млн</button><button class="ft" data-f="b" data-v="1">2–4 млн</button><button class="ft" data-f="b" data-v="2">4–6 млн</button><button class="ft" data-f="b" data-v="3">от 6 млн</button></div>
+      <select class="fsel" id="fsort" aria-label="Сортировка"><option value="p">Сначала дешевле</option><option value="pd">Сначала дороже</option><option value="y">Сначала новее</option></select>
+    </div>
+    <div class="cgrid" id="cgrid"></div>
+    <div class="foot-note"><span id="cnote"></span><a class="alink" href="https://pakim.ru/catalog" target="_blank" rel="noopener">Полная база на pakim.ru</a></div>
+  </div>
+</section>
+
+<main id="top">
+
+<!-- HERO: 3D-автомобиль с анимированной инфографикой -->
+<section class="hero sec-dark" id="hero">
+  <div class="hero-stage" id="stage">
+    <div class="hero-txt" id="bigTxt"><h1>Авто из Кореи и Китая</h1></div>
+    <img class="hero-fb" src="https://images.unsplash.com/photo-1723100286449-5b0fd5291855?auto=format&fit=crop&w=1600&q=80" alt="Genesis GV70">
+    <div class="cv-wrap" id="cvwrap">
+      <canvas id="car3d" aria-label="Автомобиль в 3D, вращается при прокрутке"></canvas>
+      <div class="co" id="co"><svg id="cosvg"></svg></div>
+    </div>
+    <div class="hero-credit">Демо-модель автомобиля</div>
+    <div class="hero-hint"><i></i>Листайте, машина повернётся</div>
+  </div>
+  <div class="hero-copy" id="heroCopy">
+    <span class="cap">Оптовый экспорт из Кореи и Китая</span>
+    <p>Для дилеров, автосалонов и корпоративных закупок. Без посредников, с ценой, которая фиксируется в договоре.</p>
+    <div class="row"><a href="#match" class="btn" data-go="#match">Предложение под бюджет</a><button class="alink" data-catalog>Каталог →</button></div>
+  </div>
+</section>
+
+<div class="tick" aria-hidden="true"><div class="tick-in" id="tick"></div></div>
+
+<!-- LINES -->
+<section class="sec sec-light" id="gap">
+  <div class="wrap gap">
+    <div>
+      <h2 class="ed">Цена в договоре. <em>Срок в обязательствах.</em></h2>
+      <a href="#match" class="btn" data-go="#match">Получить предложение</a>
+    </div>
+    <div class="lines" id="lines">
+      <div class="ln" style="--h:42"><div class="n" data-v="3">3</div><div class="c">года работы<br>с экспортом</div><div class="stem"></div></div>
+      <div class="ln" style="--h:56"><div class="n" data-v="0">0</div><div class="c">спорных<br>ситуаций</div><div class="stem"></div></div>
+      <div class="ln" style="--h:70"><div class="n" data-v="4">4</div><div class="c">языка в штате:<br>RU · KO · ZH · EN</div><div class="stem"></div></div>
+      <div class="ln" style="--h:85"><div class="n" data-v="30">30</div><div class="c">дней<br>срок поставки</div><div class="stem"></div></div>
+      <div class="ln" style="--h:100"><div class="n" data-v="200" data-s="+">200+</div><div class="c">фото и видео<br>на каждую сделку</div><div class="stem"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROUTE -->
+<section class="route sec-dark" id="process">
+  <div class="wrap route-in">
+    <div class="route-head"><h2 class="ed">Как проходит <em>сделка</em></h2></div>
+    <div class="route-map" id="routeMap">
+      <svg viewBox="0 0 1000 340" aria-hidden="true">
+        <path class="rbase" id="rBase" d="M20,290 C200,290 230,80 430,100 C620,120 640,250 800,200 C900,170 940,95 985,70"/>
+        <path class="rline" id="rLine" d="M20,290 C200,290 230,80 430,100 C620,120 640,250 800,200 C900,170 940,95 985,70"/>
+        <circle class="rcar" id="rCar" r="8" cx="20" cy="290"/>
+      </svg>
+    </div>
+    <div class="route-info">
+      <div class="big t" id="rNum">1/5</div>
+      <h3 class="t" id="rT">Заявка</h3>
+      <p class="t" id="rP"></p>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG TEASER: три автомобиля из базы PAKIM -->
+<section class="sec sec-light" id="cat-teaser">
+  <div class="wrap">
+    <div class="ct-h">
+      <h2 class="ed">Из актуальной <em>базы PAKIM</em></h2>
+      <div><p>Русскоязычный каталог с ценами. Новые и подержанные автомобили из Кореи и Китая.</p><button class="btn" data-catalog>Открыть каталог</button></div>
+    </div>
+    <div class="tz" id="teaser"></div>
+  </div>
+</section>
+
+<!-- DIRECTIONS -->
+<section class="sec sec-dark" id="dirs" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="ct-h"><h2 class="ed">Откуда <em>везём</em></h2></div>
+    <div class="rowsl">
+      <div><h3>Корея</h3><p>Hyundai, Kia, Genesis, BMW, Mercedes, Audi, Volvo, Mini. Популярные модели для дилеров, новые и с пробегом.</p></div>
+      <div><h3>Китай</h3><p>Volkswagen, Audi, BMW, Toyota, Zeekr, Changan, Chery и другие. Быстрые поставки, выгодная цена, высокий спрос.</p></div>
+      <div><h3>Европа и Япония</h3><p>BMW, Audi, Mercedes, Skoda, Toyota, Honda, Nissan. Высокая ликвидность и предсказуемая маржа.</p></div>
+      <div><h3>Коммерческие автомобили</h3><p>Спецпроекты под корпоративные закупки и поставки автопарков.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEALERS -->
+<section class="sec sec-dark" id="dealers">
+  <div class="wrap dl">
+    <div>
+      <h2 class="ed">Дилерам и <em>автосалонам</em></h2>
+      <p class="lead">Скорость оборота, стабильность поставок и предсказуемая маржа. Процессы выстроены так, чтобы вы получали результат без рисков.</p>
+      <button class="btn" data-seg="Дилер" data-req>Запросить дилерский прайс</button>
+    </div>
+    <div>
+      <div class="rowsl">
+        <div><h3>Закрытый B2B-канал</h3><p>Цены для профессионалов и готовые объявления для размещения в ваших рекламных источниках.</p></div>
+        <div><h3>Кабинет партнёра</h3><p>Статус каждой сделки по этапам, без звонков и переспрашиваний. Процессы автоматизированы в AmoCRM.</p></div>
+        <div><h3>Менеджер 24/7</h3><p>Персональный менеджер ведёт сделку до выдачи. В штате владеют русским, корейским, китайским и английским.</p></div>
+        <div><h3>Каталог на русском</h3><p>Цены и удобный поиск по Encar и Dongchedi.</p></div>
+      </div>
+      <div class="priv"><p>Для частных покупателей подбор бесплатный: платите только за автомобиль.</p><button class="alink" data-seg="Для себя" data-req>Оставить заявку →</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="sec sec-dark" id="match" style="padding-top:0">
+  <div class="wrap match">
+    <div class="match-l">
+      <h2 class="ed">Предложение под <em>ваш бюджет</em></h2>
+      <p class="lead">Четыре вопроса. Три автомобиля из актуальной базы с ценой под ключ и документ в PDF.</p>
+      <ul class="get">
+        <li>Автомобили из каталога с реальными ценами</li>
+        <li>Цена под ключ и условия поставки</li>
+        <li>Документ, который можно сохранить и переслать</li>
+        <li>Менеджер видит ваши ответы и не переспрашивает</li>
+      </ul>
+    </div>
+    <div class="box" id="quiz"></div>
+  </div>
+</section>
+
+<!-- GUARANTEES -->
+<section class="sec sec-light" id="guarantees">
+  <div class="wrap dl">
+    <div><h2 class="ed">Что мы <em>гарантируем</em></h2></div>
+    <div class="rowsl light">
+      <div><h3>Прозрачность сделки</h3><p>Фото и видео на каждом этапе, 200–300 файлов. Результаты комплексной диагностики на русском языке.</p></div>
+      <div><h3>Гарантированные сроки</h3><p>Если поставка задерживается, решение берём на себя.</p></div>
+      <div><h3>Фиксированная цена</h3><p>Цена, прописанная в договоре, не меняется. Без доплат и сюрпризов.</p></div>
+      <div><h3>Низкие цены</h3><p>Низкая расходная часть и никаких наценок и посредников.</p></div>
+      <div><h3>Все регионы России</h3><p>Отгружаем в любой город.</p></div>
+      <div><h3>Юридическая чистота</h3><p>Проверка и предпродажная подготовка каждого автомобиля.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec sec-dark" id="faq">
+  <div class="wrap match">
+    <div class="match-l"><h2 class="ed">Частые <em>вопросы</em></h2></div>
+    <div class="faq">
+      <details><summary>Сколько стоит подбор?</summary><p>Подбор бесплатный. Вы платите только за автомобиль и доставку по договору.</p></details>
+      <details><summary>Что, если цена изменится по ходу сделки?</summary><p>Цена фиксируется в договоре и не меняется. Дополнительных платежей нет.</p></details>
+      <details><summary>Как следить за сделкой?</summary><p>Партнёры видят статусы этапов в личном кабинете. Персональный менеджер на связи 24/7 и ведёт сделку до выдачи.</p></details>
+      <details><summary>Какие сроки?</summary><p>В среднем от 30 дней. Точный срок менеджер называет при расчёте, обязательства фиксируются в договоре.</p></details>
+      <details><summary>Работаете ли вы с частными покупателями?</summary><p>Да. Специализация компании — B2B, но частным покупателям мы также подбираем, проверяем и доставляем автомобили.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- REQUEST -->
+<section class="sec sec-dark" id="request" style="padding-top:0">
+  <div class="wrap req">
+    <div>
+      <h2 class="ed">Ответим <em>за минуту</em></h2>
+      <p class="lead" style="margin-top:26px">Ассистент свяжется сразу и уточнит детали, затем передаст заявку менеджеру. Ничего не потеряется.</p>
+    </div>
+    <div class="box" id="reqbox" style="min-height:0"></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-top">
+    <div class="foot-menu"><span class="cap">Меню</span>
+      <button data-catalog>Каталог</button><a href="#dealers" data-go="#dealers">Дилерам</a><a href="#process" data-go="#process">Как работаем</a><a href="#guarantees" data-go="#guarantees">Гарантии</a><a href="#faq" data-go="#faq">Вопросы</a></div>
+    <div class="foot-car"><img src="https://images.unsplash.com/photo-1722385640799-4ee84eb90038?auto=format&fit=crop&w=1400&q=80" alt="" loading="lazy"></div>
+    <div class="foot-cta"><h3>Привезём под ваш запрос</h3><p>Менеджер ответит в течение 15 минут.</p><a href="#request" class="btn" data-go="#request">Оставить заявку</a>
+      <div class="soc"><a href="https://t.me/pakim_auto" target="_blank" rel="noopener">Telegram</a><a href="https://www.instagram.com/pakim__auto/" target="_blank" rel="noopener">Instagram</a></div></div>
+  </div>
+  <div class="foot-big" id="footBig">Цена в договоре</div>
+  <div class="foot-bar"><div class="wrap">© PAKIM · Экспорт автомобилей из Кореи и Китая · Демо-версия, фото: Unsplash и каталог PAKIM</div></div>
+</footer>
+
+<button class="chat-fab" id="chatFab" aria-label="Задать вопрос"><i></i><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg><span class="tx">Задать вопрос</span></button>
+<div class="chat" id="chat" role="dialog" aria-label="Чат с ассистентом">
+  <div class="chat-h"><div><b>Ассистент PAKIM</b><span>Отвечает сразу</span></div><button id="chatX" aria-label="Закрыть">×</button></div>
+  <div class="chat-m" id="chatM"></div>
+  <div class="qr" id="chatQ"></div>
+</div>
+
+<button class="demo-fab" id="demoFab"><span class="t">Демо: панель менеджера</span> <b id="demoN">0</b></button>
+<div class="shade" id="shade"></div>
+<aside class="panel" id="panel" aria-label="Панель менеджера">
+  <button class="x" id="panelX" aria-label="Закрыть">×</button>
+  <h3>Панель менеджера</h3>
+  <p class="sub">Сюда попадает каждая заявка: из предложения, формы, чата и каталога. Источник определяется автоматически.</p>
+  <div id="leadList"></div>
+  <div class="hint">Проверьте источник: откройте сайт с меткой, например <code>?utm_source=instagram</code> или <code>?utm_source=yandex</code>, и оставьте заявку. Она придёт с этим источником.</div>
+</aside>
+
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+const CONFIG={webhook:'',catalogDate:'13.11.2026'}; // webhook: адрес обработчика заявок (n8n, Make, свой сервер). Пусто = демо-режим
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const rub=n=>n.toLocaleString('ru-RU').replace(/ /g,' ')+' ₽';
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+/* ---------- DATA: реальные позиции из каталога pakim.ru на 13.11.2026 ---------- */
+const E='https://ci.encar.com/',D='https://p3-dcd-sign.byteimg.com/tos-cn-i-f042mdwyw7/',D9='https://p9-dcd-sign.byteimg.com/tos-cn-i-f042mdwyw7/';
+const CARS=[
+ {n:'Hyundai Staria',t:'4WD 9 мест',y:2023,k:29306,p:5953719,l:'29 800 000 ₩',o:'K',i:E+'carpicture02/pic4312/43124633_001.jpg?impolicy=heightRate&rh=696&cw=1160&ch=696&cg=Center'},
+ {n:'BMW 5-Series',t:'523d M',y:2026,k:14304,p:7012277,l:'62 900 000 ₩',o:'K',i:E+'carpicture04/pic4314/43146994_001.JPG?impolicy=heightRate&rh=696&cw=1160&ch=696&cg=Center'},
+ {n:'Genesis G70',t:'2.0T AWD',y:2020,k:27700,p:3941459,l:'18 500 000 ₩',o:'K',i:E+'carpicture04/pic4314/43146545_001.jpg?impolicy=heightRate&rh=696&cw=1160&ch=696&cg=Center'},
+ {n:'Mercedes-Benz GLB',t:'GLB 200 d',y:2023,k:60894,p:3302110,l:'43 000 000 ₩',o:'K',i:E+'carpicture04/pic4314/43141612_027.jpg?impolicy=heightRate&rh=696&cw=1160&ch=696&cg=Center'},
+ {n:'Volkswagen Tiguan',t:'2.0 TDI',y:2022,k:27107,p:3274168,l:'42 500 000 ₩',o:'K',i:E+'carpicture03/pic4313/43134785_027.jpg?impolicy=heightRate&rh=696&cw=1160&ch=696&cg=Center'},
+ {n:'Hyundai Avante',t:'2.0',y:2027,k:435,p:3464832,l:'35 900 000 ₩',o:'K',i:E+'carpicture04/pic4314/43145024_001.jpg?impolicy=heightRate&rh=696&cw=1160&ch=696&cg=Center'},
+ {n:'Peugeot 308',t:'1.5 BlueHDi GT',y:2023,k:39812,p:2578127,l:'35 800 000 ₩',o:'K',i:E+'carpicture03/pic4313/43133285_027.jpg?impolicy=heightRate&rh=696&cw=1160&ch=696&cg=Center'},
+ {n:'Kia K5',t:'2.0',y:2023,k:68722,p:1995367,l:'22 750 000 ₩',o:'K',i:E+'carpicture03/pic4313/43135715_001.jpg?impolicy=heightRate&rh=696&cw=1160&ch=696&cg=Center'},
+ {n:'Hyundai Avante',t:'',y:2023,k:46302,p:1876781,l:'22 990 000 ₩',o:'K',i:E+'carpicture03/pic4313/43133961_001.jpg?impolicy=heightRate&rh=696&cw=1160&ch=696&cg=Center'},
+ {n:'Kia Niro',t:'1.6 HEV',y:2022,k:30363,p:1909877,l:'23 500 000 ₩',o:'K',i:E+'carpicture03/pic4313/43131269_027.jpg?impolicy=heightRate&rh=696&cw=1160&ch=696&cg=Center'},
+ {n:'Hyundai Ioniq 9',t:'2WD',y:2027,k:2600,p:null,l:'67 500 000 ₩',o:'K',i:E+'carpicture04/pic4314/43146745_001.jpg?impolicy=heightRate&rh=696&cw=1160&ch=696&cg=Center'},
+ {n:'Li Auto L7',t:'Pro смарт',y:2025,k:34000,p:4100035,l:'218 000 ¥',o:'C',i:D9+'6373df0ef3e44056b09dbdede5818fb7~tplv-f042mdwyw7-original:1536:0.jpg?lk3s=6c99a4fc&x-expires=1797056861&x-signature=gloqDXYPDls7aLFDalGfUNqgHoY%3D&psm=motor.sh.item'},
+ {n:'Voyah Taishan PHEV',t:'Max+',y:2026,k:13700,p:5877219,l:'313 000 ¥',o:'C',i:D9+'1333341575b0472ea7dc8f071526deb8~tplv-f042mdwyw7-original:1536:0.jpg?lk3s=6c99a4fc&x-expires=1797056740&x-signature=tEKEFlT2XnjX%2BGUizYfQQPrmdZU%3D&psm=motor.sh.item'},
+ {n:'Luxeed V9',t:'Ultra+',y:2026,k:14000,p:8841283,l:'469 800 ¥',o:'C',i:D+'cde64d2a647d41569546499c6a393ecb~tplv-f042mdwyw7-original:1536:0.jpg?lk3s=6c99a4fc&x-expires=1797056859&x-signature=GtO%2FX6T9S3f%2BHIXh0qUv42RuaXw%3D&psm=motor.sh.item'},
+ {n:'Honda Civic',t:'240 Turbo CVT Plus',y:2025,k:18000,p:2603538,l:'90 800 ¥',o:'C',i:D+'e67ed76d3a9a431a8cf2eed1b3649ff6~tplv-f042mdwyw7-original:1536:0.jpg?lk3s=6c99a4fc&x-expires=1797056622&x-signature=Ys1EdNUtZALZqh%2FTOJ99oD%2BmcNY%3D&psm=motor.sh.item'},
+ {n:'Geely Starray',t:'1.5TD DCT престиж',y:2023,k:37000,p:2704853,l:'76 800 ¥',o:'C',i:D+'f58b8db399394ec9abb4e82bb7f1dd83~tplv-f042mdwyw7-original:1536:0.jpg?lk3s=6c99a4fc&x-expires=1797056665&x-signature=U9xeNB3SOrnXKdg0cPqIDnc6ZME%3D&psm=motor.sh.item'},
+ {n:'Geely Boyue',t:'1.8TD DCT комфорт',y:2021,k:63000,p:2584786,l:'39 800 ¥',o:'C',i:D9+'3f4162c5bbf74824aefe9c2f0de467cb~tplv-f042mdwyw7-original:1536:0.jpg?lk3s=6c99a4fc&x-expires=1797056672&x-signature=7GRnq8H0cdYn4GuzaugfdlrPA0c%3D&psm=motor.sh.item'},
+ {n:'Ford Bronco',t:'гибрид',y:2026,k:100,p:3193424,l:'169 800 ¥',o:'C',i:D+'a80eae2fbbfb433eb330f1828a88244f~tplv-f042mdwyw7-original:1536:0.jpg?lk3s=6c99a4fc&x-expires=1797056634&x-signature=j18nqRgQwlOZrQURoCxGoXxcboc%3D&psm=motor.sh.item'},
+ {n:'Mazda CX-4',t:'2.0L',y:2021,k:57000,p:1810093,l:'72 000 ¥',o:'C',i:D+'9675264b8a1f447bb91c2dbbb7b05f5a~tplv-f042mdwyw7-original:1536:0.jpg?lk3s=6c99a4fc&x-expires=1797056664&x-signature=mAVfrxWzch37R8BDrj%2Blf39DdWw%3D&psm=motor.sh.item'},
+ {n:'Xiaomi SU7',t:'задний привод, стандарт',y:2026,k:8000,p:null,l:'225 800 ¥',o:'C',i:D9+'1bdcfe2f11704ef696adc482c0695744~tplv-f042mdwyw7-original:1536:0.jpg?lk3s=6c99a4fc&x-expires=1797056854&x-signature=M4Z7BRB9JMRFE4T2J56C18UyFis%3D&psm=motor.sh.item'},
+ {n:'BYD Sea Lion 06 EV',t:'710 флагман',y:2026,k:3000,p:null,l:'176 800 ¥',o:'C',i:D9+'8b70e2c850d74ce3886dcb9f9f8e4189~tplv-f042mdwyw7-original:1536:0.jpg?lk3s=6c99a4fc&x-expires=1797056856&x-signature=7VTIzPjYrzzLfD%2BIkIG0O9eCuEM%3D&psm=motor.sh.item'},
+ {n:'Avatr 12',t:'Max, задний привод',y:2026,k:10000,p:null,l:'249 900 ¥',o:'C',i:D+'4fc08229671247e5898cf44bc199ab05~tplv-f042mdwyw7-original:1536:0.jpg?lk3s=6c99a4fc&x-expires=1797056736&x-signature=Dc4jJXCtkiDhXegKPeaY%2ByjKbIQ%3D&psm=motor.sh.item'}
+];
+const img=(u,w=828)=>'https://pakim.ru/_next/image?url='+encodeURIComponent(u)+'&w='+w+'&q=75';
+const BINS=[[0,2e6],[2e6,4e6],[4e6,6e6],[6e6,1e12]];
+const TEASER=[2,19,7]; // самые выразительные кадры из базы: Genesis G70, Xiaomi SU7, Kia K5
+
+/* ---------- ticker ---------- */
+const BR=['Hyundai','Kia','Genesis','BMW','Mercedes-Benz','Audi','Volkswagen','Toyota','BYD','Zeekr','Xiaomi','Li Auto','Voyah','Geely'];
+$('#tick').innerHTML=[...BR,...BR].map(b=>`<span>${b}</span>`).join('');
+
+/* ---------- smooth scroll, nav, progress ---------- */
+let lenis=null;
+if(window.gsap&&window.ScrollTrigger){gsap.registerPlugin(ScrollTrigger);
+  if(window.Lenis&&!reduce){lenis=new Lenis({lerp:.09,smoothWheel:true});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0)}}
+function goTo(sel){closeCatalog();const el=$(sel);if(!el)return;setTimeout(()=>{if(lenis)lenis.scrollTo(el,{offset:sel==='#top'?0:-10,duration:1.4});else el.scrollIntoView({behavior:reduce?'auto':'smooth'})},60)}
+$$('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();closeMenu();goTo(a.dataset.go)}));
+const chatFab=$('#chatFab');
+addEventListener('scroll',()=>{
+  const y=scrollY,max=document.documentElement.scrollHeight-innerHeight;
+  $('#hd').classList.toggle('s',y>40);
+  $('#prog').style.transform='scaleX('+(max>0?Math.min(1,y/max):0)+')';
+  chatFab.classList.toggle('show',y>innerHeight*1.1);
+},{passive:true});
+const menu=$('#menu');
+function closeMenu(){menu.classList.remove('on');$('#burger').innerHTML='<i></i><i></i>'}
+$('#burger').onclick=()=>{const on=menu.classList.toggle('on');$('#burger').innerHTML=on?'<i style="transform:translateY(4.3px) rotate(45deg)"></i><i style="transform:translateY(-4.3px) rotate(-45deg)"></i>':'<i></i><i></i>'};
+
+/* ---------- loader ---------- */
+(function(){
+  const L=$('#loader');
+  if(reduce||!window.gsap){L.remove();return}
+  const o={v:0};
+  gsap.to(o,{v:100,duration:1.2,ease:'power2.inOut',onUpdate:()=>{$('#ldct').textContent=Math.round(o.v);$('#ldbar').style.transform='scaleX('+o.v/100+')'},
+    onComplete:()=>gsap.to(L,{yPercent:-100,duration:.9,ease:'power4.inOut',onComplete:()=>L.remove()})});
+})();
+
+/* ---------- cursor + magnetic ---------- */
+if(fine&&window.gsap){
+  const cur=$('#cur'),qx=gsap.quickTo(cur,'x',{duration:.35,ease:'power3'}),qy=gsap.quickTo(cur,'y',{duration:.35,ease:'power3'});
+  addEventListener('mousemove',e=>{cur.style.opacity=1;qx(e.clientX);qy(e.clientY)});
+  document.addEventListener('mouseover',e=>{
+    const v=e.target.closest('.car-it .ph'),h=e.target.closest('a,button,summary,.opt,.ft');
+    cur.classList.toggle('view',!!v);cur.classList.toggle('hov',!!h&&!v);
+  });
+  $$('.btn:not(.ghost),.alink').forEach(b=>{
+    const mx=gsap.quickTo(b,'x',{duration:.4,ease:'power3'}),my=gsap.quickTo(b,'y',{duration:.4,ease:'power3'});
+    b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();mx((e.clientX-r.left-r.width/2)*.22);my((e.clientY-r.top-r.height/2)*.3)});
+    b.addEventListener('mouseleave',()=>{mx(0);my(0)});
+  });
+}
+
+/* ---------- split headings ---------- */
+function splitWords(el){
+  const walk=node=>[...node.childNodes].forEach(n=>{
+    if(n.nodeType===3){const frag=document.createDocumentFragment();
+      n.textContent.split(/(\s+)/).forEach(p=>{if(!p)return;if(/^\s+$/.test(p)){frag.appendChild(document.createTextNode(' '))}
+        else{const w=document.createElement('span');w.className='w';const i=document.createElement('span');i.className='wi';i.textContent=p;w.appendChild(i);frag.appendChild(w)}});
+      n.replaceWith(frag)}
+    else if(n.nodeType===1)walk(n)});
+  walk(el);
+}
+
+/* ---------- ROUTE ---------- */
+const STAGES=[
+ ['Заявка','Вы выбираете автомобиль в каталоге или оставляете запрос. Менеджер уже знает параметры и отвечает за минуту.'],
+ ['Согласование','Рассчитываем стоимость единицы или партии. Вы видите итоговую сумму до подписания.'],
+ ['Договор','Подписываем договор. Цена в нём не меняется: без доплат и сюрпризов. Сроки закреплены обязательствами.'],
+ ['Закупка','Покупаем на аукционе или у поставщика. Осмотр, диагностика, проверка юридической чистоты. 200–300 фото и видео.'],
+ ['Доставка','Контролируем логистику и отгружаем в любой город. От 30 дней. Статусы видны в личном кабинете партнёра.']
+];
+const FR=[0,.25,.5,.75,1];
+function initMotion(){
+  if(!window.gsap||!window.ScrollTrigger)return;
+  const T=1.5; // задержка на экран загрузки
+  gsap.from('#heroCopy > *',{opacity:0,y:26,stagger:.12,duration:1,delay:T+.5,ease:'power3.out'});
+  gsap.from('#bigTxt',{yPercent:40,opacity:0,duration:1.5,delay:T+.2,ease:'power4.out'});
+  gsap.from('.hero-hint,.hero-credit',{opacity:0,duration:1,delay:T+1.6});
+
+  $$('.ed').forEach(h=>{if(h.closest('.cview'))return;splitWords(h);
+    gsap.from(h.querySelectorAll('.wi'),{yPercent:118,duration:1.15,ease:'power4.out',stagger:.07,scrollTrigger:{trigger:h,start:'top 85%'}})});
+
+  $$('#lines .ln').forEach((ln,i)=>{
+    const tl=gsap.timeline({scrollTrigger:{trigger:'#lines',start:'top 78%'}});
+    tl.from(ln.querySelector('.stem'),{scaleY:0,duration:1.2,ease:'power3.out'},i*.14).from(ln.querySelectorAll('.n,.c'),{opacity:0,y:18,duration:.8,stagger:.08},i*.14+.5);
+    const n=ln.querySelector('.n');
+    if(n.dataset.v!==undefined){const o={v:0},t=+n.dataset.v,s=n.dataset.s||'';tl.to(o,{v:t,duration:1.5,ease:'power2.out',onUpdate:()=>n.textContent=Math.round(o.v)+s},i*.14+.5)}
+  });
+  gsap.from('#gap .btn',{opacity:0,y:30,duration:1,scrollTrigger:{trigger:'#gap .btn',start:'top 92%'}});
+
+  const L=$('#rBase').getTotalLength(),line=$('#rLine'),car=$('#rCar'),map=$('#routeMap');
+  line.style.strokeDasharray=L;line.style.strokeDashoffset=L;
+  FR.forEach((f,i)=>{const p=$('#rBase').getPointAtLength(L*f);const d=document.createElement('div');d.className='node'+([1,2].includes(i)?' up':'');d.style.left=(p.x/1000*100)+'%';d.style.top=(p.y/340*100)+'%';d.innerHTML='<b></b><span>'+STAGES[i][0]+'</span>';map.appendChild(d)});
+  const nodes=$$('.node');let cur=-1;
+  function setStage(i){if(i===cur)return;cur=i;nodes.forEach((n,k)=>n.classList.toggle('on',k<=i));const els=$$('.route-info .t');
+    gsap.to(els,{opacity:0,y:8,duration:.12,onComplete:()=>{$('#rNum').textContent=(i+1)+'/5';$('#rT').textContent=STAGES[i][0];$('#rP').textContent=STAGES[i][1];gsap.to(els,{opacity:1,y:0,duration:.3})}})}
+  $('#rP').textContent=STAGES[0][1];setStage(0);
+  ScrollTrigger.create({trigger:'#process',start:'top top',end:'+=2400',pin:true,scrub:true,refreshPriority:1,
+    onUpdate:s=>{const p=s.progress;line.style.strokeDashoffset=L*(1-p);const pt=$('#rBase').getPointAtLength(L*p);car.setAttribute('cx',pt.x);car.setAttribute('cy',pt.y);let k=0;FR.forEach((f,i)=>{if(p>=f-.015)k=i});setStage(k)}});
+
+  gsap.from('#teaser .car-it',{opacity:0,y:80,stagger:.18,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'#teaser',start:'top 80%'}});
+  gsap.from('#cat-teaser .ct-h > div',{opacity:0,y:30,duration:1,scrollTrigger:{trigger:'#cat-teaser',start:'top 70%'}});
+  gsap.from('#dirs .rowsl > div',{opacity:0,y:30,stagger:.1,duration:.9,scrollTrigger:{trigger:'#dirs .rowsl',start:'top 82%'}});
+  gsap.from('#dealers .dl > div > *:not(h2)',{opacity:0,y:30,stagger:.08,duration:.9,scrollTrigger:{trigger:'#dealers',start:'top 70%'}});
+  gsap.from('#match .match-l > *:not(h2),#match .box',{opacity:0,y:30,stagger:.1,duration:.9,scrollTrigger:{trigger:'#match',start:'top 70%'}});
+  gsap.from('#guarantees .rowsl > div',{opacity:0,y:30,stagger:.08,duration:.8,scrollTrigger:{trigger:'#guarantees .rowsl',start:'top 82%'}});
+  gsap.fromTo('#footBig',{x:()=>-Math.max(0,$('#footBig').scrollWidth-innerWidth)*.05},{x:()=>-Math.max(0,$('#footBig').scrollWidth-innerWidth)*.55,ease:'none',scrollTrigger:{trigger:'.foot',start:'top bottom',end:'bottom bottom',scrub:.6,invalidateOnRefresh:true}});
+  gsap.from('.foot-top > *',{opacity:0,y:40,stagger:.12,duration:1,scrollTrigger:{trigger:'.foot',start:'top 75%'}});
+  addEventListener('load',()=>ScrollTrigger.refresh());
+}
+
+/* ---------- car cards + catalog ---------- */
+function carCard(c,cls=''){
+  const price=c.p?`<b>${rub(c.p)}</b><small>${c.l}</small>`:`<b style="font-size:22px">Цена по запросу</b><small>${c.l}</small>`;
+  return `<article class="car-it ${cls}"><div class="ph"><span class="ph-n">${c.n.split(' ')[0]}</span><img src="${img(c.i,cls==='big'?1080:828)}" alt="${c.n}" loading="lazy" onerror="this.remove()"></div>
+  <div class="tp"><h3>${c.n}</h3><span class="or">${c.o==='K'?'Корея':'Китай'}</span></div>
+  <div class="tr">${c.t||'&nbsp;'}</div>
+  <div class="mt">${c.y} · ${c.k.toLocaleString('ru-RU')} км</div>
+  <div class="pr">${price}</div>
+  <button class="rq" data-ask="${c.n}${c.t?' '+c.t:''}, ${c.y}">Запросить расчёт</button></article>`;
+}
+function bindAsk(root){$$(root+' [data-ask]').forEach(b=>b.onclick=()=>{reqWant='Интересует: '+b.dataset.ask;renderReq();closeCatalog();goTo('#request')})}
+$('#teaser').innerHTML=TEASER.map((i,k)=>carCard(CARS[i],k===0?'big':'')).join('');
+bindAsk('#teaser');
+const flt={o:'',b:'',s:'p'};
+function renderCatalog(){
+  let list=CARS.filter(c=>(!flt.o||c.o===flt.o)&&(flt.b===''||(c.p&&c.p>=BINS[+flt.b][0]&&c.p<BINS[+flt.b][1])));
+  list.sort((a,b)=>flt.s==='y'?b.y-a.y:flt.s==='pd'?(b.p||0)-(a.p||0):(a.p||1e13)-(b.p||1e13));
+  $('#cgrid').innerHTML=list.length?list.map(c=>carCard(c)).join(''):'<div class="empty">По этим параметрам в подборке пусто. Менеджер найдёт вариант в полной базе.</div>';
+  $('#cnote').textContent='Показано '+list.length+' из '+CARS.length+' в подборке · данные каталога на '+CONFIG.catalogDate;
+  bindAsk('#cgrid');
+}
+$$('.ft').forEach(b=>b.onclick=()=>{flt[b.dataset.f]=b.dataset.v;$$('.ft[data-f="'+b.dataset.f+'"]').forEach(x=>x.classList.toggle('on',x===b));renderCatalog()});
+$('#fsort').onchange=e=>{flt.s=e.target.value;renderCatalog()};
+function openCatalog(){closeMenu();$('#cview').classList.add('on');$('#cview').scrollTop=0;document.body.classList.add('lock');lenis&&lenis.stop();$('#hd').classList.add('s');try{history.replaceState(null,'','#catalog')}catch(e){}}
+function closeCatalog(){if(!$('#cview').classList.contains('on'))return;$('#cview').classList.remove('on');document.body.classList.remove('lock');lenis&&lenis.start();try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
+$$('[data-catalog]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();openCatalog()}));
+renderCatalog();
+
+/* ---------- LEADS ---------- */
+const store={get(){try{return JSON.parse(localStorage.getItem('pakim_demo_leads')||'null')}catch(e){return null}},set(v){try{localStorage.setItem('pakim_demo_leads',JSON.stringify(v))}catch(e){}}};
+const nowT=()=>Date.now();
+let leads=store.get()||[
+ {name:'Автосалон «Вектор»',want:'Партия: Hyundai Staria, 4 шт.',src:'Telegram',seg:'Дилер',city:'Казань',t:nowT()-26*60e3,resp:'1 мин'},
+ {name:'Руслан М.',want:'Genesis G70',src:'Instagram (реклама)',seg:'Для себя',city:'Краснодар',t:nowT()-3*3600e3,resp:'40 сек'}
+];
+function sourceName(){const p=new URLSearchParams(location.search),u=(p.get('utm_source')||'').toLowerCase(),c=p.get('utm_campaign');
+  const map={instagram:'Instagram (реклама)',ig:'Instagram (реклама)',telegram:'Telegram',tg:'Telegram',yandex:'Яндекс.Директ',google:'Google Ads',vk:'VK',avito:'Авито',youtube:'YouTube'};
+  if(u)return(map[u]||u)+(c?' · '+c:'');
+  if(document.referrer&&!document.referrer.includes(location.host)){try{return'Переход с '+new URL(document.referrer).hostname.replace('www.','')}catch(e){}}
+  return'Сайт, прямой заход'}
+const SRC=sourceName();
+const ago=t=>{const m=Math.round((nowT()-t)/60e3);return m<1?'только что':m<60?m+' мин назад':Math.round(m/60)+' ч назад'};
+function saveLead(l){l.t=nowT();l.fresh=true;leads.unshift(l);store.set(leads.map(x=>({...x,fresh:false})));renderPanel();
+  if(CONFIG.webhook){fetch(CONFIG.webhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...l,page:location.href})}).catch(()=>{})}return l}
+function renderPanel(){$('#demoN').textContent=leads.length;
+  $('#leadList').innerHTML=leads.map(l=>`<div class="ld ${l.fresh?'new':''}"><div class="ld-h"><b>${l.name}</b><span>${ago(l.t)}</span></div><p>${l.want}${l.city?' · '+l.city:''}${l.contact?' · '+l.contact:''}</p><div class="tg"><span class="g">${l.src}</span><span>${l.seg}</span><span>ответ: ${l.resp||'сразу'}</span></div></div>`).join('')}
+
+/* ---------- QUIZ ---------- */
+const Q=[
+ {k:'seg',t:'Для кого подбираем?',s:'От этого зависят условия и цена.',o:[['Дилер','автосалон или перекупщик'],['Для себя','личное использование'],['Автопарк','корпоративная закупка']]},
+ {k:'city',t:'Куда доставить?',s:'Отгружаем в любой город России.',o:[['Москва'],['Казань'],['Краснодар'],['Новосибирск'],['Владивосток'],['Другой город']]},
+ {k:'from',t:'Откуда везём?',s:'Корея: надёжные авто с пробегом. Китай: быстрее и выгоднее.',o:[['Корея'],['Китай'],['Не важно','покажите лучшее']]},
+ {k:'budget',t:'Какой бюджет на одну машину?',s:'Цена под ключ, с доставкой и оформлением.',o:[['до 2 млн'],['2–4 млн'],['4–6 млн'],['от 6 млн']]}
+];
+const BUD=['до 2 млн','2–4 млн','4–6 млн','от 6 млн'];
+let qs=0,ans={};
+function renderQuiz(){
+  const bar='<div class="steps">'+Array.from({length:Q.length+1},(_,i)=>`<i class="${i<=qs?'on':''}"></i>`).join('')+'</div>';let h;
+  if(qs<Q.length){const q=Q[qs];
+    h=`${bar}<div class="q-n">Вопрос ${qs+1} из ${Q.length}</div><div class="q-t">${q.t}</div><div class="q-s">${q.s}</div><div class="opts">${q.o.map(o=>`<button class="opt" data-a="${o[0]}">${o[0]}${o[1]?`<small>${o[1]}</small>`:''}</button>`).join('')}</div><div class="q-foot"><button class="bk" id="qb" ${qs?'':'style="visibility:hidden"'}>← Назад</button><span></span></div>`;
+  }else{
+    h=`${bar}<div class="q-n">Почти готово</div><div class="q-t">Куда отправить предложение?</div><div class="q-s">Документ откроется сразу. Копию пришлём в Telegram.</div>
+    <div class="fld"><label for="qn">Имя</label><input id="qn" placeholder="Как к вам обращаться" autocomplete="name"></div>
+    <div class="fld"><label for="qc">Telegram или телефон</label><input id="qc" placeholder="@username или +7" autocomplete="off"></div>
+    <div class="err" id="qe"></div><div class="q-foot"><button class="bk" id="qb">← Назад</button><button class="btn" id="qs">Получить предложение</button></div>`;}
+  $('#quiz').innerHTML=h;
+  $$('#quiz .opt').forEach(b=>b.onclick=()=>{ans[Q[qs].k]=b.dataset.a;qs++;renderQuiz()});
+  const qb=$('#qb');if(qb)qb.onclick=()=>{qs--;renderQuiz()};const s=$('#qs');if(s)s.onclick=finishQuiz;
+}
+function pick(){
+  const bi=BUD.indexOf(ans.budget),[lo,hi]=BINS[bi],mid=hi>1e11?8e6:(lo+hi)/2;
+  return CARS.filter(c=>c.p).map(c=>{let s=0;if(ans.from!=='Не важно'&&c.o===(ans.from==='Корея'?'K':'C'))s+=3;if(c.p>=lo&&c.p<hi)s+=4;s-=Math.abs(c.p-mid)/3e6;return{c,s}}).sort((a,b)=>b.s-a.s).slice(0,3).map(x=>x.c);
+}
+function finishQuiz(){
+  const name=$('#qn').value.trim(),contact=$('#qc').value.trim();
+  if(!contact){$('#qe').textContent='Укажите Telegram или телефон, чтобы мы отправили копию.';$('#qc').focus();return}
+  const cars=pick(),dealer=ans.seg!=='Для себя';
+  saveLead({name:name||'Без имени',contact,want:'Предложение: '+cars[0].n,src:SRC+' · предложение',seg:ans.seg==='Автопарк'?'Дилер':ans.seg,city:ans.city,resp:'сразу'});
+  const num='КП-'+String(Math.floor(2400+Math.random()*500));
+  $('#quiz').classList.add('doc');
+  $('#quiz').innerHTML=`<div id="doc"><div class="doc-top"><div class="lg">PAKIM</div><div>Коммерческое предложение № ${num}<br>${name?'Для: '+name+'<br>':''}${new Date().toLocaleDateString('ru-RU')}</div></div>
+   <h3>Три автомобиля под ваш бюджет</h3>
+   <p class="par">${ans.seg} · доставка: ${ans.city} · ${ans.from} · ${ans.budget}</p>
+   ${cars.map(c=>`<div class="dcar"><div class="th"><img src="${img(c.i,640)}" alt="" onerror="this.remove()"></div><div><b>${c.n}${c.t?' '+c.t:''}</b><p>${c.y} · ${c.k.toLocaleString('ru-RU')} км · ${c.o==='K'?'Корея':'Китай'}</p></div><div class="pr"><small>ориентир под ключ</small>${rub(c.p)}</div></div>`).join('')}
+   <div class="terms"><div><b>от 30 дней</b><span>срок поставки</span></div><div><b>Фикс</b><span>цена в договоре</span></div><div><b>200+</b><span>фото и видео</span></div><div><b>24/7</b><span>личный менеджер</span></div></div>
+   ${dealer?`<div class="dealer-b"><b>Условия для дилеров</b>Менеджер пришлёт закрытый B2B-прайс и откроет доступ в кабинет партнёра со статусами сделок.</div>`:''}
+   <div class="status"><span class="dot"></span><span>Заявка у менеджера: ${name||'без имени'}, ${contact}. Он видит ваши ответы и это предложение. Копию пришлём в Telegram.</span></div>
+   <div class="doc-act"><button class="btn" onclick="window.print()">Скачать PDF</button><button class="btn ghost" id="again">Пройти заново</button></div>
+   <p class="doc-note">Цены из каталога PAKIM на ${CONFIG.catalogDate}, ориентир под ключ. Точную цену до вашего города фиксирует договор.</p></div>`;
+  $('#again').onclick=()=>{qs=0;ans={};$('#quiz').classList.remove('doc');renderQuiz()};
+  goTo('#match');
+}
+
+/* ---------- REQUEST ---------- */
+let reqSeg='Дилер',reqWant='';
+function renderReq(done){
+  if(done){$('#reqbox').innerHTML=`<div class="ok-box"><span class="dot" style="display:inline-block"></span><h3>Заявка принята</h3><p>Ассистент написал вам, менеджер подключится в течение 15 минут. Подборку и вопросы можно продолжить в Telegram.</p><div class="src-line">Источник заявки: ${done.src}. Он сохранён в карточке автоматически.</div><div class="doc-act"><button class="btn ghost" id="reqAgain">Оставить ещё одну</button></div></div>`;$('#reqAgain').onclick=()=>{reqWant='';renderReq()};return}
+  $('#reqbox').innerHTML=`<form id="rf" novalidate><div class="seg">${['Дилер','Для себя','Автопарк'].map(s=>`<button type="button" class="${s===reqSeg?'on':''}" data-s="${s}">${s}</button>`).join('')}</div>
+   <div class="fld"><label for="rn">Имя</label><input id="rn" placeholder="Как к вам обращаться" autocomplete="name"></div>
+   <div class="fld"><label for="rc">Telegram или телефон</label><input id="rc" placeholder="@username или +7" autocomplete="off"></div>
+   <div class="fld"><label for="rw">Что ищете</label><textarea id="rw" placeholder="Модель, бюджет, количество. Можно оставить пустым."></textarea></div>
+   <div class="err" id="re"></div><button class="btn" type="submit" style="width:100%">Отправить заявку</button></form>`;
+  $('#rw').value=reqWant;
+  $$('.seg button').forEach(b=>b.onclick=()=>{reqSeg=b.dataset.s;$$('.seg button').forEach(x=>x.classList.toggle('on',x===b))});
+  $('#rf').onsubmit=e=>{e.preventDefault();const c=$('#rc').value.trim();if(!c){$('#re').textContent='Укажите Telegram или телефон.';return}
+    renderReq(saveLead({name:$('#rn').value.trim()||'Без имени',contact:c,want:$('#rw').value.trim()||'Запрос без уточнений',src:SRC+' · форма',seg:reqSeg==='Автопарк'?'Дилер':reqSeg,city:'',resp:'сразу'}))};
+}
+$$('[data-req]').forEach(b=>b.onclick=()=>{reqSeg=b.dataset.seg;renderReq();goTo('#request')});
+
+/* ---------- CHAT (сценарий-демо) ---------- */
+let chatData={},chatOpened=false;const $m=$('#chatM'),$q=$('#chatQ');
+const say=(t,w='b')=>{$m.insertAdjacentHTML('beforeend',`<div class="m ${w}">${t}</div>`);$m.scrollTop=$m.scrollHeight};
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+function chips(list,fn){$q.innerHTML=list.map(x=>`<button>${x}</button>`).join('');$$('#chatQ button').forEach(b=>b.onclick=()=>{$q.innerHTML='';say(b.textContent,'u');fn(b.textContent)})}
+async function chatFlow(){
+  await wait(500);say('Здравствуйте! Помогу подобрать автомобиль и посчитаю цену. Вы дилер или покупаете для себя?');
+  chips(['Дилер','Для себя'],async a=>{chatData.seg=a;await wait(600);say('Откуда везём?');
+   chips(['Корея','Китай','Не важно'],async b=>{chatData.from=b;await wait(600);say('Какой бюджет на одну машину?');
+    chips(BUD,async c=>{chatData.budget=c;await wait(600);say('Оставьте Telegram или телефон. Менеджер напишет в течение 15 минут и пришлёт варианты.');
+     $q.innerHTML='<form id="cf"><input id="ci" placeholder="@username или +7" aria-label="Контакт"><button class="btn" type="submit">Отправить</button></form>';
+     $('#cf').onsubmit=async e=>{e.preventDefault();const v=$('#ci').value.trim();if(!v)return;$q.innerHTML='';say(v,'u');
+      saveLead({name:'Чат на сайте',contact:v,want:`${chatData.from}, ${chatData.budget}`,src:SRC+' · чат',seg:chatData.seg,city:'',resp:'3 сек'});
+      await wait(600);say('Готово, заявка у менеджера. Если появятся вопросы, пишите сюда.')}})})});
+}
+$('#chatFab').onclick=()=>{$('#chat').classList.toggle('on');if(!chatOpened){chatOpened=true;chatFlow()}};
+$('#chatX').onclick=()=>$('#chat').classList.remove('on');
+
+/* ---------- PANEL ---------- */
+const openP=()=>{renderPanel();$('#panel').classList.add('on');$('#shade').classList.add('on')};
+const closeP=()=>{$('#panel').classList.remove('on');$('#shade').classList.remove('on');leads.forEach(l=>l.fresh=false)};
+$('#demoFab').onclick=openP;$('#panelX').onclick=closeP;$('#shade').onclick=closeP;
+addEventListener('keydown',e=>{if(e.key==='Escape'){closeP();closeMenu();closeCatalog();$('#chat').classList.remove('on')}});
+
+renderQuiz();renderReq();renderPanel();
+if(!reduce)initMotion();
+if(location.hash==='#catalog')openCatalog();
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {DRACOLoader} from 'three/addons/loaders/DRACOLoader.js';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+
+/* Реальная модель: положите файл assets/car.glb рядом с index.html — сайт подхватит его сам.
+   Если у модели передняя часть смотрит не в +Z, задайте window.PAKIM_CAR={front:'-z'} (допустимо '+x','-x','+z','-z').
+   Пока файла нет, показывается демо-модель из галереи three.js. */
+const MODEL_DEMO='https://cdn.jsdelivr.net/gh/mrdoob/three.js@r160/examples/models/gltf/ferrari.glb';
+const MODEL_LOCAL='assets/car.glb';
+const CAR_CFG=Object.assign({front:'+z'},window.PAKIM_CAR||{});
+async function pickModel(){
+  if(/^https?:/.test(location.protocol)){try{const r=await fetch(MODEL_LOCAL,{method:'HEAD'});if(r.ok)return{url:MODEL_LOCAL,demo:false}}catch(e){}}
+  return{url:MODEL_DEMO,demo:true};
+}
+const hero=document.getElementById('hero'),cv=document.getElementById('car3d'),coEl=document.getElementById('co'),svg=document.getElementById('cosvg');
+const bigTxt=document.getElementById('bigTxt'),copy=document.getElementById('heroCopy');
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const mobile=()=>innerWidth<=980,small=()=>innerWidth<=640;
+/* ---------- РЕЖИМ 360° ПО КАДРАМ (реальная съёмка PAKIM) ----------
+   Кадры: assets/spin/01.jpg … 36.jpg (по кругу, один шаг ≈ 10°). Если первый кадр найден, 3D-модель не используется.
+   Настройка: window.PAKIM_SPIN={count:36,ext:'jpg',callouts:[…]} до загрузки скрипта. */
+const SPIN=Object.assign({path:'assets/spin/',count:36,ext:'jpg',pad:2,start:1,mask:false,blend:false,
+  callouts:[
+   {x:.30,y:.60,at:[0,.2],t:'Диагностика на русском',s:'Результаты комплексной проверки',dy:-1},
+   {x:.54,y:.36,at:[.12,.5],t:'200–300 фото и видео',s:'На каждую сделку',dy:-1.9},
+   {x:.76,y:.62,at:[.42,.8],t:'Цена в договоре',s:'Без доплат и сюрпризов',dy:-1}]},window.PAKIM_SPIN||{});
+const frameUrl=i=>SPIN.path+String(i+SPIN.start).padStart(SPIN.pad,'0')+'.'+SPIN.ext;
+const probeFrames=()=>new Promise(res=>{const im=new Image();im.onload=()=>res(im);im.onerror=()=>res(null);im.src=frameUrl(0)});
+function startFrames(first){
+  hero.classList.add('frames');cv.style.display='none';
+  const wrap=document.getElementById('cvwrap'),c2=document.createElement('canvas');
+  c2.id='spin2d';c2.style.cssText='position:absolute;inset:0;width:100%;height:100%;display:block'+(SPIN.mask?';-webkit-mask-image:radial-gradient(ellipse 40% 46% at 64% 47%,#000 52%,transparent 100%);mask-image:radial-gradient(ellipse 40% 46% at 64% 47%,#000 52%,transparent 100%)':'');
+  wrap.insertBefore(c2,coEl);
+  const cr=document.querySelector('.hero-credit');cr&&cr.remove();
+  const ctx=c2.getContext('2d'),N=SPIN.count,imgs=[first];
+  for(let i=1;i<N;i++){const im=new Image();im.src=frameUrl(i);imgs.push(im)}
+  const cos=SPIN.callouts.map(d=>{
+    const dot=document.createElement('div');dot.className='co-dot';coEl.appendChild(dot);
+    const lab=document.createElement('div');lab.className='co-lab';lab.innerHTML='<b>'+d.t+'</b><span>'+d.s+'</span>';coEl.appendChild(lab);
+    const poly=document.createElementNS('http://www.w3.org/2000/svg','polyline');svg.appendChild(poly);
+    return{d,dot,lab,poly}});
+  let w=1,h=1,dpr=Math.min(devicePixelRatio,2),cur=0,target=0,prog=0;
+  const iv={v:N*.3};cur=iv.v;
+  const size=()=>{const r=c2.getBoundingClientRect();w=Math.max(1,r.width);h=Math.max(1,r.height);c2.width=w*dpr;c2.height=h*dpr;lw=w;lh=h};
+  let lw=1,lh=1;new ResizeObserver(size).observe(c2);size();
+  const sm=()=>small();
+  function draw(){
+    ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+    const wide=!mobile(),bw=wide?w*.68:w,bh=wide?h*.8:h*.92,cx=wide?w*.64:w*.5,cy=wide?h*.47:h*.5;
+    const f=((cur%N)+N)%N,a=SPIN.blend?Math.floor(f):Math.round(f)%N,b=(a+1)%N,t=SPIN.blend?f-a:0;
+    const put=(im,al)=>{if(!im||!im.complete||!im.naturalWidth)return false;const s=Math.min(bw/im.naturalWidth,bh/im.naturalHeight),dw=im.naturalWidth*s,dh=im.naturalHeight*s;ctx.globalAlpha=al;ctx.drawImage(im,cx-dw/2,cy-dh/2,dw,dh);return true};
+    if(!put(imgs[a],1)){for(let k=1;k<N&&!put(imgs[(a+k)%N],1);k++);}
+    if(t>.03)put(imgs[b],t);
+    ctx.globalAlpha=1;
+    const Lw=sm()?118:176,ss=x=>Math.max(0,Math.min(1,x)),fade=(p,A,B)=>ss((p-A+.05)/.1)*(1-ss((p-B+.05)/.1));
+    cos.forEach((c,i)=>{
+      if(sm()&&i===2){c.dot.style.opacity=0;c.lab.style.opacity=0;c.poly.setAttribute('opacity',0);return}
+      const vis=fade(prog,c.d.at[0],c.d.at[1]);
+      const x=c.d.x*w,y=c.d.y*h,side=x>w*.5?1:-1;
+      let lx=x+side*(sm()?22:56),ly=y+c.d.dy*(sm()?52:64);
+      lx=Math.max(Lw*(side<0?1:0)+14,Math.min(w-14-(side>0?Lw:0),lx));
+      const ex=lx+side*Lw*.9,lxp=side>0?lx:lx-Lw;
+      c.dot.style.transform='translate('+x+'px,'+y+'px)';
+      c.poly.setAttribute('points',x+','+y+' '+lx+','+ly+' '+ex+','+ly);
+      c.lab.style.width=Lw+'px';c.lab.className='co-lab'+(side<0?' r':'');
+      c.lab.style.transform='translate('+lxp+'px,'+(ly-6)+'px) translateY(-100%)';
+      c.dot.style.opacity=vis;c.lab.style.opacity=vis;c.poly.setAttribute('opacity',vis);
+    });
+  }
+  if(reduce||!window.gsap||!window.ScrollTrigger){cur=0;draw();return}
+  const delay=Math.max(0,1.5-performance.now()/1000);
+  gsap.to(iv,{v:0,duration:2.8,delay,ease:'power3.out'});
+  const overflow=()=>Math.max(0,bigTxt.scrollWidth-innerWidth*.9);
+  ScrollTrigger.create({trigger:hero,start:'top top',end:'+=2400',pin:true,scrub:true,refreshPriority:2,invalidateOnRefresh:true,
+    onUpdate:s=>{prog=s.progress;target=s.progress*N;gsap.set(bigTxt,{x:-s.progress*overflow()});copy.style.opacity=Math.max(0,1-s.progress*7);copy.style.pointerEvents=s.progress>.12?'none':''}});
+  let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting,{rootMargin:'200px'}).observe(hero);
+  gsap.ticker.add(()=>{if(!vis)return;cur+=((target+iv.v)-cur)*.12;draw()});
+  ScrollTrigger.refresh();
+}
+const fail=why=>{console.warn('3D off:',why);hero.classList.add('nogl');window.ScrollTrigger&&ScrollTrigger.refresh()};
+let renderer;
+try{renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true,powerPreference:'high-performance'})}catch(e){fail(e)}
+if(renderer){
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;
+const scene=new THREE.Scene();
+scene.environment=new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(),0.04).texture;
+const camera=new THREE.PerspectiveCamera(28,1,.1,100);
+const key=new THREE.DirectionalLight(0xffe6c8,1.7);key.position.set(3,5,3);scene.add(key);
+const rim=new THREE.DirectionalLight(0xc8a27c,2.4);rim.position.set(-4,2.5,-4);scene.add(rim);
+const group=new THREE.Group();scene.add(group);
+const sc=document.createElement('canvas');sc.width=sc.height=256;
+const sx=sc.getContext('2d'),g=sx.createRadialGradient(128,128,10,128,128,128);
+g.addColorStop(0,'rgba(0,0,0,.85)');g.addColorStop(.55,'rgba(0,0,0,.35)');g.addColorStop(1,'rgba(0,0,0,0)');sx.fillStyle=g;sx.fillRect(0,0,256,256);
+const shadow=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(sc),transparent:true,depthWrite:false}));
+shadow.rotation.x=-Math.PI/2;scene.add(shadow);
+
+let R=2.5,H=1.2,ready=false,visible=true,target=0,cur=0,lw=1,lh=1;
+const intro={a:-1.7};
+const START=Math.PI+.55;
+const callouts=[]; // {local:Vector3, dot, lab, poly, always, mob}
+
+/* размер холста берётся из реального размера на экране, иначе машина растягивается */
+function fit(){
+  const w=Math.max(1,cv.clientWidth),h=Math.max(1,cv.clientHeight);lw=w;lh=h;
+  renderer.setSize(w,h,false);camera.aspect=w/h;
+  const vf=camera.fov*Math.PI/180,hf=2*Math.atan(Math.tan(vf/2)*camera.aspect);
+  const wide=!mobile();
+  const dist=wide?Math.max(R*1.85/Math.tan(hf/2),R*1.35/Math.tan(vf/2)):Math.max(R*.98/Math.tan(hf/2),R*.9/Math.tan(vf/2));
+  const off=wide?R*.62:0;
+  camera.position.set(-off,R*.36,dist);camera.lookAt(-off,R*(wide?.55:.5),0);camera.updateProjectionMatrix();
+}
+function buildCallouts(car){
+  const defs=[
+   ['rim_fl','Диагностика на русском','Результаты комплексной проверки',false,true,-1],
+   ['glass','200–300 фото и видео','На каждую сделку',false,true,-1.9],
+   ['rim_rr','Цена в договоре','Без доплат и сюрпризов',false,false,-1]
+  ];
+  const cb=new THREE.Box3().setFromObject(car),cs=cb.getSize(new THREE.Vector3());
+  const ax=CAR_CFG.front[1],sg=CAR_CFG.front[0]==='-'?-1:1; // ось и знак «переда»
+  const L=ax==='x'?cs.x:cs.z,W=ax==='x'?cs.z:cs.x;
+  const gen={ // запасные точки, если у модели нет именованных деталей
+   rim_fl:[sg*L*.31,cs.y*.24,-W*.5],glass:[sg*L*.04,cs.y*.8,0],rim_rr:[-sg*L*.31,cs.y*.24,W*.5]};
+  defs.forEach(([name,t,s,always,mob,dy])=>{
+    const o=car.getObjectByName(name);
+    const b=new THREE.Box3();if(o)b.setFromObject(o);
+    let p;
+    if(o&&!b.isEmpty()){p=b.getCenter(new THREE.Vector3());if(name==='glass')p.y+=(b.max.y-b.min.y)*.15}
+    else{const g=gen[name];p=ax==='x'?new THREE.Vector3(g[0],g[1],g[2]):new THREE.Vector3(g[2],g[1],g[0])}
+    const dot=document.createElement('div');dot.className='co-dot';coEl.appendChild(dot);
+    const lab=document.createElement('div');lab.className='co-lab';lab.innerHTML='<b>'+t+'</b><span>'+s+'</span>';coEl.appendChild(lab);
+    const poly=document.createElementNS('http://www.w3.org/2000/svg','polyline');svg.appendChild(poly);
+    callouts.push({local:p,dot,lab,poly,always,mob,dy});
+  });
+}
+const V=new THREE.Vector3(),C=new THREE.Vector3(),D=new THREE.Vector3();
+function updateCallouts(){
+  const w=lw,h=lh,sm=small(),Lw=sm?118:176;
+  C.set(0,H*.4,0);
+  callouts.forEach(c=>{
+    if(sm&&!c.mob){c.dot.style.opacity=0;c.lab.style.opacity=0;c.poly.setAttribute('opacity',0);return}
+    V.copy(c.local);group.localToWorld(V);
+    D.copy(V).sub(C).normalize();
+    const cam=camera.position.clone().sub(C).normalize();
+    const f=D.dot(cam);
+    const vis=c.always?1:Math.max(0,Math.min(1,(f+.05)/.4));
+    const p=V.clone().project(camera);
+    const x=(p.x*.5+.5)*w,y=(-p.y*.5+.5)*h;
+    const side=x>w*.5?1:-1;
+    let lx=x+side*(sm?22:56),ly=y+c.dy*(sm?52:64);
+    lx=Math.max(Lw*(side<0?1:0)+14,Math.min(w-14-(side>0?Lw:0),lx));
+    const ex=lx+side*Lw*.9;
+    c.dot.style.transform='translate('+x+'px,'+y+'px)';
+    c.poly.setAttribute('points',x+','+y+' '+lx+','+ly+' '+ex+','+ly);
+    const lxp=side>0?lx:lx-Lw;
+    c.lab.style.width=Lw+'px';c.lab.className='co-lab'+(side<0?' r':'');
+    c.lab.style.transform=c.dy<0?'translate('+lxp+'px,'+(ly-6)+'px) translateY(-100%)':'translate('+lxp+'px,'+(ly+8)+'px)';
+    c.dot.style.opacity=vis;c.lab.style.opacity=vis;c.poly.setAttribute('opacity',vis);
+  });
+}
+const loader=new GLTFLoader();
+const draco=new DRACOLoader();draco.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');loader.setDRACOLoader(draco);
+probeFrames().then(first=>first?startFrames(first):pickModel().then(({url,demo})=>loader.load(url,gltf=>{
+  const car=gltf.scene,body=car.getObjectByName('body');
+  if(demo&&body&&body.material){body.material=body.material.clone();body.material.color.set('#7b6350');body.material.metalness=.9;body.material.roughness=.32}
+  if(!demo){const cr=document.querySelector('.hero-credit');if(cr)cr.remove()}
+  /* у реальной модели «перед» может быть не вдоль +Z: приводим длинную ось к X для единых расчётов не нужно, учитываем в выносках */
+  const box=new THREE.Box3().setFromObject(car),c=box.getCenter(new THREE.Vector3()),sz=box.getSize(new THREE.Vector3());
+  car.position.x-=c.x;car.position.z-=c.z;car.position.y-=box.min.y;
+  group.add(car);R=Math.max(sz.x,sz.z)/2;H=sz.y;shadow.scale.setScalar(R*3.2);shadow.position.y=.01;
+  group.updateMatrixWorld(true);
+  buildCallouts(car);
+  fit();ready=true;start();
+},undefined,e=>fail(e))));
+new ResizeObserver(()=>{ready&&fit()}).observe(cv);
+addEventListener('resize',()=>ready&&fit());
+new IntersectionObserver(e=>visible=e[0].isIntersecting,{rootMargin:'200px'}).observe(hero);
+
+function render(){
+  if(!ready||!visible)return;
+  if(cv.clientWidth!==lw||cv.clientHeight!==lh)fit();
+  cur+=(target-cur)*.1;
+  group.rotation.y=START+intro.a+cur;
+  renderer.render(scene,camera);
+  updateCallouts();
+}
+function start(){
+  const delay=Math.max(0,1.5-performance.now()/1000);
+  if(reduce){intro.a=0;target=0;render();return}
+  if(window.gsap&&window.ScrollTrigger){
+    gsap.to(intro,{a:0,duration:2.8,delay,ease:'power3.out'});
+    const overflow=()=>Math.max(0,bigTxt.scrollWidth-innerWidth*.9);
+    ScrollTrigger.create({trigger:hero,start:'top top',end:'+=2400',pin:true,scrub:true,refreshPriority:2,invalidateOnRefresh:true,
+      onUpdate:s=>{target=s.progress*Math.PI*2;gsap.set(bigTxt,{x:-s.progress*overflow()});copy.style.opacity=Math.max(0,1-s.progress*7);copy.style.pointerEvents=s.progress>.12?'none':''}});
+    gsap.ticker.add(render);ScrollTrigger.refresh();
+  }else{const loop=()=>{target=(scrollY/innerHeight)*Math.PI;render();requestAnimationFrame(loop)};loop()}
+}
+}
+</script>
+</body>
+</html>
