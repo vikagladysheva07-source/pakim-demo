@@ -440,7 +440,7 @@ body:not(.demo) .chat-fab,body:not(.demo) .demo-fab,body:not(.demo) .chat{displa
 <header class="hd" id="hd"><div class="wrap">
   <a href="#top" class="logo" data-go="#top">PAKIM</a>
   <nav class="nav">
-    <button data-catalog>Каталог</button>
+    <a data-catalog href="https://pakim.ru/catalog" target="_blank" rel="noopener">Каталог</a>
     <a href="#dealers" data-go="#dealers">Дилерам</a>
     <a href="#process" data-go="#process">Как работаем</a>
     <a href="#guarantees" data-go="#guarantees">Гарантии</a>
@@ -449,7 +449,7 @@ body:not(.demo) .chat-fab,body:not(.demo) .demo-fab,body:not(.demo) .chat{displa
   <div class="hd-r"><a href="#request" class="btn ghost" data-go="#request">Оставить заявку</a><button class="burger" id="burger" aria-label="Меню"><i></i><i></i></button></div>
 </div></header>
 <nav class="menu" id="menu">
-  <button data-catalog>Каталог</button>
+  <a data-catalog href="https://pakim.ru/catalog" target="_blank" rel="noopener">Каталог</a>
   <a href="#dealers" data-go="#dealers">Дилерам</a>
   <a href="#process" data-go="#process">Как работаем</a>
   <a href="#guarantees" data-go="#guarantees">Гарантии</a>
@@ -489,7 +489,7 @@ body:not(.demo) .chat-fab,body:not(.demo) .demo-fab,body:not(.demo) .chat{displa
     <span class="cap">Оптовый экспорт из Кореи и Китая</span>
     <h1 class="hero-h">Авто из Кореи и Китая</h1>
     <p>Для дилеров, автосалонов и корпоративных закупок. Без посредников, с ценой, которая фиксируется в договоре.</p>
-    <div class="row"><a href="#match" class="btn" data-go="#match">Предложение под бюджет</a><button class="alink" data-catalog>Каталог →</button></div>
+    <div class="row"><a href="#match" class="btn" data-go="#match">Предложение под бюджет</a><a class="alink" data-catalog href="https://pakim.ru/catalog" target="_blank" rel="noopener">Каталог →</a></div>
   </div>
 </section>
 
@@ -536,7 +536,7 @@ body:not(.demo) .chat-fab,body:not(.demo) .demo-fab,body:not(.demo) .chat{displa
   <div class="wrap">
     <div class="ct-h">
       <h2 class="ed">Из актуальной <em>базы PAKIM</em></h2>
-      <div><p>Русскоязычный каталог с ценами. Новые и подержанные автомобили из Кореи и Китая.</p><button class="btn" data-catalog>Открыть каталог</button></div>
+      <div><p>Русскоязычный каталог с ценами. Новые и подержанные автомобили из Кореи и Китая.</p><a class="btn" data-catalog href="https://pakim.ru/catalog" target="_blank" rel="noopener">Открыть каталог</a></div>
     </div>
     <div class="tz" id="teaser"></div>
   </div>
@@ -637,7 +637,7 @@ body:not(.demo) .chat-fab,body:not(.demo) .demo-fab,body:not(.demo) .chat{displa
 <footer class="foot">
   <div class="wrap foot-top">
     <div class="foot-menu"><span class="cap">Меню</span>
-      <button data-catalog>Каталог</button><a href="#dealers" data-go="#dealers">Дилерам</a><a href="#process" data-go="#process">Как работаем</a><a href="#guarantees" data-go="#guarantees">Гарантии</a><a href="#faq" data-go="#faq">Вопросы</a></div>
+      <a data-catalog href="https://pakim.ru/catalog" target="_blank" rel="noopener">Каталог</a><a href="#dealers" data-go="#dealers">Дилерам</a><a href="#process" data-go="#process">Как работаем</a><a href="#guarantees" data-go="#guarantees">Гарантии</a><a href="#faq" data-go="#faq">Вопросы</a></div>
     <div class="foot-car"><img src="https://images.unsplash.com/photo-1722385640799-4ee84eb90038?auto=format&fit=crop&w=1400&q=80" alt="" loading="lazy"></div>
     <div class="foot-cta"><h3>Привезём под ваш запрос</h3><p>Менеджер ответит в течение 15 минут.</p><a href="#request" class="btn" data-go="#request">Оставить заявку</a>
       <div class="soc"><a href="https://t.me/pakim_auto" target="_blank" rel="noopener">Telegram</a><a href="https://www.instagram.com/pakim__auto/" target="_blank" rel="noopener">Instagram</a></div></div>
@@ -828,7 +828,6 @@ $$('.ft').forEach(b=>b.onclick=()=>{flt[b.dataset.f]=b.dataset.v;$$('.ft[data-f=
 $('#fsort').onchange=e=>{flt.s=e.target.value;renderCatalog()};
 function openCatalog(){closeMenu();$('#cview').classList.add('on');$('#cview').scrollTop=0;document.body.classList.add('lock');lenis&&lenis.stop();$('#hd').classList.add('s');try{history.replaceState(null,'','#catalog')}catch(e){}}
 function closeCatalog(){if(!$('#cview').classList.contains('on'))return;$('#cview').classList.remove('on');document.body.classList.remove('lock');lenis&&lenis.start();try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
-$$('[data-catalog]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();openCatalog()}));
 renderCatalog();
 
 /* ---------- LEADS ---------- */
