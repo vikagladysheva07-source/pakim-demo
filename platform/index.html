@@ -404,7 +404,7 @@ const IC = {
   bell:'<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>',
   arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>'
 };
-const SRC = {ig:['Instagram',IC.ig], tg:['Telegram',IC.tg], wa:['WhatsApp',IC.wa], vk:['ВКонтакте',IC.vk], web:['Сайт',IC.web], avito:['Авито',IC.avito], call:['Звонок',IC.phone]};
+const SRC = {ig:['Instagram',IC.ig], tg:['Telegram',IC.tg], wa:['WhatsApp',IC.wa], web:['Сайт',IC.web], avito:['Авито',IC.avito], call:['Звонок',IC.phone]};
 const STAGES = ['Новая','Квалификация','Подбор','Расчёт','Предоплата','Выкуп','В пути','Выдача'];
 const MGR = {
   'АК':{n:'Алина Ким', r:'Корея · розница'},
@@ -424,7 +424,7 @@ const cities = ['Москва','Екатеринбург','Новосибирс�
 const msgs = ['Цена под ключ до Москвы?','Сколько ждать доставку?','Нужно 4 машины в месяц, какие условия?','Есть в наличии белый?','Какой пробег у этой?','Можно с панорамой и в полной комплектации?','Хочу в лизинг через компанию','Рассчитайте до Алматы','Интересует оптовая цена для салона','Какие гарантии при выкупе с аукциона?'];
 let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
 const pick = a => a[Math.floor(rnd() * a.length)];
-const srcKeys = ['ig','ig','ig','tg','tg','wa','vk','web','web','avito','call'];
+const srcKeys = ['ig','ig','ig','tg','tg','wa','wa','web','web','avito','call'];
 const stageW = [6,5,5,4,3,3,2,2];
 let LEADS = [];
 let idc = 1040;
@@ -585,7 +585,7 @@ V.crm = () => {
   return `<div class="tools">
     <div class="seg g">${[['all','Все'],['d','Дилеры'],['r','Розница']].map(([k, t]) => `<button data-f="${k}" class="${filt === k ? 'on' : ''}">${t}</button>`).join('')}</div>
     <span class="tag gold">${I(IC.spark)}ИИ квалифицирует каждую заявку</span>
-    <span class="tag">Все источники в одной воронке: Instagram, Telegram, WhatsApp, ВКонтакте, сайт, Авито, звонки</span>
+    <span class="tag">Все источники в одной воронке: Instagram, Telegram, WhatsApp, сайт, Авито, звонки</span>
   </div><div class="board" id="board">${cols}</div>`;
 };
 function ago(m) { if (m < 1) return 'сейчас'; if (m < 60) return m + ' мин'; if (m < 1440) return Math.floor(m / 60) + ' ч'; return Math.floor(m / 1440) + ' дн'; }
@@ -671,9 +671,9 @@ V.team = () => {
 
 V.media = () => {
   const days = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'], d0 = 10;
-  const P = [[['Reels','GV80: цена под ключ',IC.ig,1],['Подборка','6 авто из Кореи',IC.tg,1]],[['Карусель','Как проходит выкуп',IC.ig,1],['Пост','Новинки Китая',IC.vk,1]],[['Reels','Li Auto L9 в порту',IC.ig,1],['Подборка','Авто до 4 млн',IC.tg,0]],[['Видео','Отзыв дилера',IC.content,0],['Подборка','Утренняя для дилеров',IC.tg,0]],[['Reels','Zeekr 001 за 60 сек',IC.ig,0]],[['Карусель','Корея или Китай',IC.ig,0],['Пост','Выдача в Алматы',IC.vk,0]],[['Подборка','Итоги недели',IC.tg,0]]];
+  const P = [[['Reels','GV80: цена под ключ',IC.ig,1],['Подборка','6 авто из Кореи',IC.tg,1]],[['Карусель','Как проходит выкуп',IC.ig,1],['Пост','Новинки Китая',IC.tg,1]],[['Reels','Li Auto L9 в порту',IC.ig,1],['Подборка','Авто до 4 млн',IC.tg,0]],[['Видео','Отзыв дилера',IC.content,0],['Подборка','Утренняя для дилеров',IC.tg,0]],[['Reels','Zeekr 001 за 60 сек',IC.ig,0]],[['Карусель','Корея или Китай',IC.ig,0],['Пост','Выдача в Алматы',IC.tg,0]],[['Подборка','Итоги недели',IC.tg,0]]];
   return `<div class="grid c4">
-    ${kpi('Публикаций в неделю', 26, '', '5 площадок', 1)}
+    ${kpi('Публикаций в неделю', 26, '', '4 площадки', 1)}
     ${kpi('Охват за ноябрь', '1,9', 'млн', '+42% к октябрю', 1)}
     ${kpi('Заявок из контента', 641, '', '50% всех заявок', 1)}
     ${kpi('Комментарии без ответа', 0, '', 'ИИ отвечает за 9 секунд', 1)}
@@ -685,7 +685,7 @@ V.media = () => {
     <div class="g card"><div class="ch"><h3>Лучшие ролики</h3><span class="r">по заявкам</span></div>
       ${[['Genesis GV80: сколько стоит под ключ','312 тыс просмотров · 184 комментария',71],['Li Auto L9 прибыл во Владивосток','244 тыс просмотров · 129 комментариев',52],['Как мы выкупаем авто с аукциона','198 тыс просмотров · 96 комментариев',38],['Xiaomi SU7: честный обзор','176 тыс просмотров · 88 комментариев',31]].map(r => `<div class="reel"><div class="thumb">${I(IC.play)}</div><div><b>${r[0]}</b><small>${r[1]}</small></div><span class="tag gold">${r[2]} заявок</span></div>`).join('')}
     </div>
-    <div class="g card"><div class="ch"><h3>Заявки по площадкам</h3></div><div class="bars">${[['Instagram',312],['Telegram',164],['YouTube',71],['ВКонтакте',58],['TikTok',36]].map(b => `<div class="br"><span>${b[0]}</span><div class="tr"><i style="width:${b[1] / 312 * 100}%"></i></div><b>${b[1]}</b></div>`).join('')}</div></div>
+    <div class="g card"><div class="ch"><h3>Заявки по площадкам</h3></div><div class="bars">${[['Instagram',312],['Telegram',164],['YouTube',71],['TikTok',36]].map(b => `<div class="br"><span>${b[0]}</span><div class="tr"><i style="width:${b[1] / 312 * 100}%"></i></div><b>${b[1]}</b></div>`).join('')}</div></div>
   </div>`;
 };
 
