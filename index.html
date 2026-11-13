@@ -296,6 +296,7 @@ button{cursor:pointer;background:none;border:0}
 .foot-bar{position:relative;z-index:3;border-top:1px solid var(--ld);padding:20px 0 100px;background:var(--bg);font-size:12px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
 
 /* chat + demo panel */
+body:not(.demo) .chat-fab,body:not(.demo) .demo-fab,body:not(.demo) .chat{display:none!important}
 .chat-fab{position:fixed;right:20px;bottom:20px;z-index:70;height:52px;padding:0 24px;background:var(--text);color:var(--bg);font-weight:600;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:12px;border-radius:2px;box-shadow:0 12px 40px rgba(0,0,0,.45)}
 .chat-fab i{width:8px;height:8px;border-radius:50%;background:#4d8a2f}
 .chat-fab .ic{display:none}
@@ -676,6 +677,7 @@ if(window.gsap&&window.ScrollTrigger){gsap.registerPlugin(ScrollTrigger);
   if(window.Lenis&&!reduce){lenis=new Lenis({lerp:.09,smoothWheel:true});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0)}}
 function goTo(sel){closeCatalog();const el=$(sel);if(!el)return;setTimeout(()=>{if(lenis)lenis.scrollTo(el,{offset:sel==='#top'?0:-10,duration:1.4});else el.scrollIntoView({behavior:reduce?'auto':'smooth'})},60)}
 $$('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();closeMenu();goTo(a.dataset.go)}));
+if(/[?&]demo\b/.test(location.search))document.body.classList.add('demo');
 const chatFab=$('#chatFab');
 addEventListener('scroll',()=>{
   const y=scrollY,max=document.documentElement.scrollHeight-innerHeight;
@@ -938,6 +940,7 @@ const SPIN=Object.assign({path:'assets/spin/',count:36,ext:'jpg',pad:2,start:1,m
    {x:.76,y:.62,at:[.42,.8],t:'Цена в договоре',s:'Без доплат и сюрпризов',dy:-1}]},window.PAKIM_SPIN||{});
 const frameUrl=i=>SPIN.path+String(i+SPIN.start).padStart(SPIN.pad,'0')+'.'+SPIN.ext;
 const probeFrames=()=>new Promise(res=>{const im=new Image();im.onload=()=>res(im);im.onerror=()=>res(null);im.src=frameUrl(0)});
+function pickSide(x,w,Lw){let s=x>w*.5?1:-1;if(!mobile()){const cr=copy.offsetLeft+copy.offsetWidth+24;if(s<0&&x-56-Lw<cr)s=1}return s}
 function startFrames(first){
   hero.classList.add('frames');cv.style.display='none';
   const wrap=document.getElementById('cvwrap'),c2=document.createElement('canvas');
@@ -968,7 +971,7 @@ function startFrames(first){
     cos.forEach((c,i)=>{
       if(sm()&&i===2){c.dot.style.opacity=0;c.lab.style.opacity=0;c.poly.setAttribute('opacity',0);return}
       const vis=fade(prog,c.d.at[0],c.d.at[1]);
-      const x=c.d.x*w,y=c.d.y*h,side=x>w*.5?1:-1;
+      const x=c.d.x*w,y=c.d.y*h,side=pickSide(x,w,Lw);
       let lx=x+side*(sm()?22:56),ly=y+c.d.dy*(sm()?52:64);
       lx=Math.max(Lw*(side<0?1:0)+14,Math.min(w-14-(side>0?Lw:0),lx));
       const ex=lx+side*Lw*.9,lxp=side>0?lx:lx-Lw;
@@ -984,7 +987,7 @@ function startFrames(first){
   gsap.to(iv,{v:0,duration:2.8,delay,ease:'power3.out'});
   const overflow=()=>Math.max(0,bigTxt.scrollWidth-innerWidth*.9);
   ScrollTrigger.create({trigger:hero,start:'top top',end:'+=2400',pin:true,scrub:true,refreshPriority:2,invalidateOnRefresh:true,
-    onUpdate:s=>{prog=s.progress;target=s.progress*N;gsap.set(bigTxt,{x:-s.progress*overflow()});copy.style.opacity=Math.max(0,1-s.progress*7);copy.style.pointerEvents=s.progress>.12?'none':''}});
+    onUpdate:s=>{prog=s.progress;target=s.progress*N;gsap.set(bigTxt,{x:-s.progress*overflow()});}});
   let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting,{rootMargin:'200px'}).observe(hero);
   gsap.ticker.add(()=>{if(!vis)return;cur+=((target+iv.v)-cur)*.12;draw()});
   ScrollTrigger.refresh();
@@ -1058,7 +1061,7 @@ function updateCallouts(){
     const vis=c.always?1:Math.max(0,Math.min(1,(f+.05)/.4));
     const p=V.clone().project(camera);
     const x=(p.x*.5+.5)*w,y=(-p.y*.5+.5)*h;
-    const side=x>w*.5?1:-1;
+    const side=pickSide(x,w,Lw);
     let lx=x+side*(sm?22:56),ly=y+c.dy*(sm?52:64);
     lx=Math.max(Lw*(side<0?1:0)+14,Math.min(w-14-(side>0?Lw:0),lx));
     const ex=lx+side*Lw*.9;
@@ -1103,7 +1106,7 @@ function start(){
     gsap.to(intro,{a:0,duration:2.8,delay,ease:'power3.out'});
     const overflow=()=>Math.max(0,bigTxt.scrollWidth-innerWidth*.9);
     ScrollTrigger.create({trigger:hero,start:'top top',end:'+=2400',pin:true,scrub:true,refreshPriority:2,invalidateOnRefresh:true,
-      onUpdate:s=>{target=s.progress*Math.PI*2;gsap.set(bigTxt,{x:-s.progress*overflow()});copy.style.opacity=Math.max(0,1-s.progress*7);copy.style.pointerEvents=s.progress>.12?'none':''}});
+      onUpdate:s=>{target=s.progress*Math.PI*2;gsap.set(bigTxt,{x:-s.progress*overflow()});}});
     gsap.ticker.add(render);ScrollTrigger.refresh();
   }else{const loop=()=>{target=(scrollY/innerHeight)*Math.PI;render();requestAnimationFrame(loop)};loop()}
 }
