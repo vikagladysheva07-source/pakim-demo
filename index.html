@@ -143,8 +143,8 @@ body.lock .hd{background:rgba(10,9,8,.98);border-color:var(--ld)}
 .node{position:absolute;transform:translate(-50%,-50%);display:grid;place-items:center}
 .node b{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--ld2);background:var(--bg);transition:.35s}
 .node.on b{background:var(--bronze);border-color:var(--bronze);box-shadow:0 0 0 7px rgba(200,162,124,.16)}
-.node span{position:absolute;top:24px;white-space:nowrap;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .3s}
-.node.up span{top:auto;bottom:24px}
+.node span{position:absolute;top:30px;white-space:nowrap;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .3s}
+.node.up span{top:auto;bottom:46px}
 .node.on span{color:var(--text)}
 .route-info{display:grid;grid-template-columns:auto 1fr;gap:6px 30px;align-items:start;border-top:1px solid var(--ld);padding-top:24px}
 .route-info .big{font-family:var(--disp);font-weight:600;font-size:clamp(44px,4.6vw,64px);line-height:.9;color:var(--bronze);grid-row:span 2}
@@ -373,6 +373,54 @@ body:not(.demo) .chat-fab,body:not(.demo) .demo-fab,body:not(.demo) .chat{displa
 .seg button.on{background:linear-gradient(145deg,rgba(255,255,255,.3),rgba(255,255,255,.1));color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.5)}
 .car-it .or{padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.85);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 .sec-dark .car-it .or,.cview .car-it .or{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.24)}
+/* схема: кабинет партнёра */
+.dmock{border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:24px 26px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.015))}
+.dm-top{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.dm-top i{font-style:normal;color:var(--bronze)}
+.dm-car{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:28px;flex-wrap:wrap}
+.dm-car b{font-family:var(--serif);font-weight:600;font-size:28px;line-height:1}
+.dm-car span{color:var(--muted);font-size:14px}
+.dm-steps{position:relative;display:grid;grid-template-columns:repeat(5,1fr);margin-bottom:24px}
+.dm-line{position:absolute;left:10%;right:10%;top:7px;height:2px;background:var(--ld2)}
+.dm-fill{position:absolute;inset:0;background:var(--bronze);transform-origin:left;transform:scaleX(.75)}
+.dm-st{position:relative;text-align:center;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.dm-st b{display:block;width:16px;height:16px;border-radius:50%;margin:0 auto 10px;background:var(--bg);border:2px solid var(--ld2);position:relative;z-index:1}
+.dm-st.done b{background:var(--bronze);border-color:var(--bronze)}
+.dm-st.on b{background:var(--bg);border-color:var(--bronze);box-shadow:0 0 0 6px rgba(200,162,124,.22)}
+.dm-st.done,.dm-st.on{color:var(--text)}
+.dm-tags{display:flex;flex-wrap:wrap;gap:8px}
+.dm-tags span{font-size:12px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.dfeat{display:grid;grid-template-columns:1fr 1fr;gap:28px 30px;margin:36px 0 0}
+.dfeat>div{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;align-items:start}
+.dfeat svg{grid-row:span 2;width:30px;height:30px;color:var(--bronze);margin-top:2px}
+.dfeat b{font-family:var(--serif);font-weight:600;font-size:22px;line-height:1.1}
+.dfeat span{color:var(--muted);font-size:14px}
+/* схема: как работает предложение */
+.flow{margin-top:38px}
+.fl-step{display:grid;grid-template-columns:52px 1fr;gap:18px;align-items:center;padding-bottom:30px;position:relative}
+.fl-step:last-child{padding-bottom:0}
+.fl-step:not(:last-child)::after{content:"";position:absolute;left:25px;top:56px;bottom:4px;width:1px;background:linear-gradient(var(--bronze),transparent)}
+.fl-step i{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:var(--bronze);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.24);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.fl-step i svg{width:24px;height:24px}
+.fl-step b{font-family:var(--serif);font-weight:600;font-size:26px;display:block;line-height:1.1}
+.fl-step span{color:var(--muted);font-size:14.5px}
+/* всплывающая подборка */
+.qshade{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:105;opacity:0;pointer-events:none;transition:opacity .4s}
+.qshade.on{opacity:1;pointer-events:auto}
+.qpop{position:fixed;left:50%;top:50%;transform:translate(-50%,-47%) scale(.98);width:min(580px,calc(100vw - 28px));max-height:calc(100svh - 28px);overflow:auto;z-index:110;padding:30px 30px 26px;border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.28);-webkit-backdrop-filter:blur(32px) saturate(190%);backdrop-filter:blur(32px) saturate(190%);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 40px 100px rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .45s,transform .55s cubic-bezier(.2,.7,.2,1)}
+.qpop.on{opacity:1;pointer-events:auto;transform:translate(-50%,-50%)}
+.qpop .qx{position:absolute;right:18px;top:12px;font-size:32px;line-height:1;color:var(--muted)}
+.qpop .qx:hover{color:var(--text)}
+.qp-head h3{font-family:var(--serif);font-weight:500;font-size:clamp(26px,2.4vw,32px);line-height:1.08;margin:10px 40px 22px 0}
+.qpop .box{border:0;background:transparent;padding:0;min-height:0;box-shadow:none;border-radius:0;-webkit-backdrop-filter:none;backdrop-filter:none}
+@media(max-width:640px){
+  .dfeat{grid-template-columns:1fr}
+  .dm-st{font-size:9px;letter-spacing:.02em}
+  .dmock{padding:18px 16px}
+  .dm-car b{font-size:24px}
+  .qpop{top:auto;bottom:0;left:0;width:100%;max-height:90svh;border-radius:24px 24px 0 0;transform:translateY(40px);padding:24px 20px 22px}
+  .qpop.on{transform:none}
+}
 @media(max-width:1100px){.nav{gap:24px}}
 @media(max-width:980px){
   .hd .wrap{grid-template-columns:1fr auto}
@@ -408,7 +456,6 @@ body:not(.demo) .chat-fab,body:not(.demo) .demo-fab,body:not(.demo) .chat{displa
   .route-info{grid-template-columns:1fr;gap:4px}.route-info .big{grid-row:auto;font-size:56px}
   .route-map{width:calc(100% - 44px);margin:auto}
   .node span{font-size:9.5px}
-  .node:nth-child(3) span{top:24px;bottom:auto}
   .node:nth-child(2) span{left:-2px;transform:none}
   .node:nth-child(6) span{right:-2px;left:auto;transform:none}
   .priv{flex-direction:column;align-items:flex-start}
@@ -564,11 +611,24 @@ body:not(.demo) .chat-fab,body:not(.demo) .demo-fab,body:not(.demo) .chat{displa
       <button class="btn" data-seg="Дилер" data-req>Запросить дилерский прайс</button>
     </div>
     <div>
-      <div class="rowsl">
-        <div><h3>Закрытый B2B-канал</h3><p>Цены для профессионалов и готовые объявления для размещения в ваших рекламных источниках.</p></div>
-        <div><h3>Кабинет партнёра</h3><p>Статус каждой сделки по этапам, без звонков и переспрашиваний. Процессы автоматизированы в AmoCRM.</p></div>
-        <div><h3>Менеджер 24/7</h3><p>Персональный менеджер ведёт сделку до выдачи. В штате владеют русским, корейским, китайским и английским.</p></div>
-        <div><h3>Каталог на русском</h3><p>Цены и удобный поиск по Encar и Dongchedi.</p></div>
+      <div class="dmock">
+        <div class="dm-top"><span>Кабинет партнёра</span><i>Пример</i></div>
+        <div class="dm-car"><b>Genesis G70, 2020</b><span>Корея · 2.0T AWD</span></div>
+        <div class="dm-steps">
+          <div class="dm-line"><i class="dm-fill"></i></div>
+          <div class="dm-st done"><b></b><span>Договор</span></div>
+          <div class="dm-st done"><b></b><span>Закупка</span></div>
+          <div class="dm-st done"><b></b><span>Осмотр</span></div>
+          <div class="dm-st on"><b></b><span>В пути</span></div>
+          <div class="dm-st"><b></b><span>Выдача</span></div>
+        </div>
+        <div class="dm-tags"><span>214 фото и видео</span><span>Диагностика готова</span><span>Цена зафиксирована</span></div>
+      </div>
+      <div class="dfeat">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12V4h8l9 9-8 8z"/><circle cx="7.5" cy="8.5" r="1.2"/></svg><b>Закрытый B2B-прайс</b><span>Цены и готовые объявления</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="5"/><rect x="13" y="10" width="8" height="11"/><rect x="3" y="13" width="8" height="8"/></svg><b>Кабинет партнёра</b><span>Статус каждой сделки</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg><b>Менеджер 24/7</b><span>RU · KO · ZH · EN</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="M16 16l5 5"/></svg><b>Каталог на русском</b><span>Поиск по Encar и Dongchedi</span></div>
       </div>
       <div class="priv"><p>Для частных покупателей подбор бесплатный: платите только за автомобиль.</p><button class="alink" data-seg="Для себя" data-req>Оставить заявку →</button></div>
     </div>
@@ -581,12 +641,11 @@ body:not(.demo) .chat-fab,body:not(.demo) .demo-fab,body:not(.demo) .chat{displa
     <div class="match-l">
       <h2 class="ed">Предложение под <em>ваш бюджет</em></h2>
       <p class="lead">Четыре вопроса. Три автомобиля из актуальной базы с ценой под ключ и документ в PDF.</p>
-      <ul class="get">
-        <li>Автомобили из каталога с реальными ценами</li>
-        <li>Цена под ключ и условия поставки</li>
-        <li>Документ, который можно сохранить и переслать</li>
-        <li>Менеджер видит ваши ответы и не переспрашивает</li>
-      </ul>
+      <div class="flow">
+        <div class="fl-step"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7"/><circle cx="12" cy="17" r=".6"/></svg></i><div><b>4 вопроса</b><span>Для кого, куда, откуда, бюджет</span></div></div>
+        <div class="fl-step"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 15l2-6a2 2 0 0 1 2-1.5h10a2 2 0 0 1 2 1.5l2 6v3h-2.5M3 18h2.5M3 15h18"/><circle cx="7.5" cy="17.5" r="1.7"/><circle cx="16.5" cy="17.5" r="1.7"/></svg></i><div><b>3 автомобиля</b><span>Из базы, с ценой под ключ</span></div></div>
+        <div class="fl-step"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></svg></i><div><b>Документ в PDF</b><span>Можно сохранить и переслать</span></div></div>
+      </div>
     </div>
     <div class="box" id="quiz"></div>
   </div>
@@ -662,6 +721,13 @@ body:not(.demo) .chat-fab,body:not(.demo) .demo-fab,body:not(.demo) .chat{displa
   <div id="leadList"></div>
   <div class="hint">Проверьте источник: откройте сайт с меткой, например <code>?utm_source=instagram</code> или <code>?utm_source=yandex</code>, и оставьте заявку. Она придёт с этим источником.</div>
 </aside>
+
+<div class="qshade" id="qshade"></div>
+<div class="qpop" id="qpop" role="dialog" aria-label="Подборка автомобилей" aria-hidden="true">
+  <button class="qx" id="qpopX" aria-label="Закрыть">×</button>
+  <div class="qp-head"><span class="cap">Подборка</span><h3>Отправим каталог лучших автомобилей, которые подходят именно вам</h3></div>
+  <div class="box" id="quizPop"></div>
+</div>
 
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -784,7 +850,7 @@ function initMotion(){
 
   const L=$('#rBase').getTotalLength(),line=$('#rLine'),car=$('#rCar'),map=$('#routeMap');
   line.style.strokeDasharray=L;line.style.strokeDashoffset=L;
-  FR.forEach((f,i)=>{const p=$('#rBase').getPointAtLength(L*f);const d=document.createElement('div');d.className='node'+([1,2].includes(i)?' up':'');d.style.left=(p.x/1000*100)+'%';d.style.top=(p.y/340*100)+'%';d.innerHTML='<b></b><span>'+STAGES[i][0]+'</span>';map.appendChild(d)});
+  FR.forEach((f,i)=>{const p=$('#rBase').getPointAtLength(L*f);const d=document.createElement('div');d.className='node'+([1,4].includes(i)?' up':'');d.style.left=(p.x/1000*100)+'%';d.style.top=(p.y/340*100)+'%';d.innerHTML='<b></b><span>'+STAGES[i][0]+'</span>';map.appendChild(d)});
   const nodes=$$('.node');let cur=-1;
   function setStage(i){if(i===cur)return;cur=i;nodes.forEach((n,k)=>n.classList.toggle('on',k<=i));const els=$$('.route-info .t');
     gsap.to(els,{opacity:0,y:8,duration:.12,onComplete:()=>{$('#rNum').textContent=(i+1)+'/5';$('#rT').textContent=STAGES[i][0];$('#rP').textContent=STAGES[i][1];gsap.to(els,{opacity:1,y:0,duration:.3})}})}
@@ -795,6 +861,7 @@ function initMotion(){
   gsap.from('#teaser .car-it',{opacity:0,y:80,stagger:.18,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'#teaser',start:'top 80%'}});
   gsap.from('#cat-teaser .ct-h > div',{opacity:0,y:30,duration:1,scrollTrigger:{trigger:'#cat-teaser',start:'top 70%'}});
   gsap.from('#dirs .rowsl > div',{opacity:0,y:30,stagger:.1,duration:.9,scrollTrigger:{trigger:'#dirs .rowsl',start:'top 82%'}});
+  gsap.fromTo('#dealers .dm-fill',{scaleX:0},{scaleX:.75,duration:1.8,ease:'power3.out',scrollTrigger:{trigger:'#dealers .dmock',start:'top 80%'}});
   gsap.from('#dealers .dl > div > *:not(h2)',{opacity:0,y:30,stagger:.08,duration:.9,scrollTrigger:{trigger:'#dealers',start:'top 70%'}});
   gsap.from('#match .match-l > *:not(h2),#match .box',{opacity:0,y:30,stagger:.1,duration:.9,scrollTrigger:{trigger:'#match',start:'top 70%'}});
   gsap.from('#guarantees .rowsl > div',{opacity:0,y:30,stagger:.08,duration:.8,scrollTrigger:{trigger:'#guarantees .rowsl',start:'top 82%'}});
@@ -857,7 +924,8 @@ const Q=[
  {k:'budget',t:'Какой бюджет на одну машину?',s:'Цена под ключ, с доставкой и оформлением.',o:[['до 2 млн'],['2–4 млн'],['4–6 млн'],['от 6 млн']]}
 ];
 const BUD=['до 2 млн','2–4 млн','4–6 млн','от 6 млн'];
-let qs=0,ans={};
+let qs=0,ans={},qroot='#quiz',qpopOpen=false;
+const QR=()=>$(qroot);
 function renderQuiz(){
   const bar='<div class="steps">'+Array.from({length:Q.length+1},(_,i)=>`<i class="${i<=qs?'on':''}"></i>`).join('')+'</div>';let h;
   if(qs<Q.length){const q=Q[qs];
@@ -867,8 +935,8 @@ function renderQuiz(){
     <div class="fld"><label for="qn">Имя</label><input id="qn" placeholder="Как к вам обращаться" autocomplete="name"></div>
     <div class="fld"><label for="qc">Telegram или телефон</label><input id="qc" placeholder="@username или +7" autocomplete="off"></div>
     <div class="err" id="qe"></div><div class="q-foot"><button class="bk" id="qb">← Назад</button><button class="btn" id="qs">Получить предложение</button></div>`;}
-  $('#quiz').innerHTML=h;
-  $$('#quiz .opt').forEach(b=>b.onclick=()=>{ans[Q[qs].k]=b.dataset.a;qs++;renderQuiz()});
+  QR().innerHTML=h;
+  $$(qroot+' .opt').forEach(b=>b.onclick=()=>{ans[Q[qs].k]=b.dataset.a;qs++;renderQuiz()});
   const qb=$('#qb');if(qb)qb.onclick=()=>{qs--;renderQuiz()};const s=$('#qs');if(s)s.onclick=finishQuiz;
 }
 function pick(){
@@ -879,7 +947,8 @@ function finishQuiz(){
   const name=$('#qn').value.trim(),contact=$('#qc').value.trim();
   if(!contact){$('#qe').textContent='Укажите Telegram или телефон, чтобы мы отправили копию.';$('#qc').focus();return}
   const cars=pick(),dealer=ans.seg!=='Для себя';
-  saveLead({name:name||'Без имени',contact,want:'Предложение: '+cars[0].n,src:SRC+' · предложение',seg:ans.seg==='Автопарк'?'Дилер':ans.seg,city:ans.city,resp:'сразу'});
+  saveLead({name:name||'Без имени',contact,want:'Предложение: '+cars[0].n,src:SRC+' · '+(qpopOpen?'всплывающая подборка':'предложение'),seg:ans.seg==='Автопарк'?'Дилер':ans.seg,city:ans.city,resp:'сразу'});
+  if(qpopOpen)closePop(true);
   const num='КП-'+String(Math.floor(2400+Math.random()*500));
   $('#quiz').classList.add('doc');
   $('#quiz').innerHTML=`<div id="doc"><div class="doc-top"><div class="lg">PAKIM</div><div>Коммерческое предложение № ${num}<br>${name?'Для: '+name+'<br>':''}${new Date().toLocaleDateString('ru-RU')}</div></div>
@@ -894,6 +963,28 @@ function finishQuiz(){
   $('#again').onclick=()=>{qs=0;ans={};$('#quiz').classList.remove('doc');renderQuiz()};
   goTo('#match');
 }
+
+/* ---------- ВСПЛЫВАЮЩАЯ ПОДБОРКА ---------- */
+function openPop(){
+  if(qpopOpen)return;qpopOpen=true;closeMenu();
+  qroot='#quizPop';$('#quiz').innerHTML='';qs=0;ans={};renderQuiz();
+  $('#qpop').classList.add('on');$('#qshade').classList.add('on');$('#qpop').setAttribute('aria-hidden','false');
+  try{sessionStorage.setItem('pk_pop','1')}catch(e){}
+  lenis&&lenis.stop();
+}
+function closePop(keep){
+  if(!qpopOpen)return;qpopOpen=false;
+  $('#qpop').classList.remove('on');$('#qshade').classList.remove('on');$('#qpop').setAttribute('aria-hidden','true');
+  $('#quizPop').innerHTML='';qroot='#quiz';
+  if(!keep){qs=0;ans={};$('#quiz').classList.remove('doc');renderQuiz()}
+  lenis&&lenis.start();
+}
+$('#qpopX').onclick=()=>closePop();$('#qshade').onclick=()=>closePop();
+(function(){
+  let seen=false;try{seen=!!sessionStorage.getItem('pk_pop')}catch(e){}
+  if(seen||/[?&]nopop/.test(location.search))return;
+  setTimeout(()=>{if(!qpopOpen&&!$('#cview').classList.contains('on'))openPop()},7500);
+})();
 
 /* ---------- REQUEST ---------- */
 let reqSeg='Дилер',reqWant='';
@@ -933,7 +1024,7 @@ $('#chatX').onclick=()=>$('#chat').classList.remove('on');
 const openP=()=>{renderPanel();$('#panel').classList.add('on');$('#shade').classList.add('on')};
 const closeP=()=>{$('#panel').classList.remove('on');$('#shade').classList.remove('on');leads.forEach(l=>l.fresh=false)};
 $('#demoFab').onclick=openP;$('#panelX').onclick=closeP;$('#shade').onclick=closeP;
-addEventListener('keydown',e=>{if(e.key==='Escape'){closeP();closeMenu();closeCatalog();$('#chat').classList.remove('on')}});
+addEventListener('keydown',e=>{if(e.key==='Escape'){closeP();closePop();closeMenu();closeCatalog();$('#chat').classList.remove('on')}});
 
 renderQuiz();renderReq();renderPanel();
 if(!reduce)initMotion();
